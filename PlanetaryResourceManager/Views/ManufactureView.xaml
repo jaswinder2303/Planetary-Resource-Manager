@@ -1,0 +1,61 @@
+﻿<Window x:Class="PlanetaryResourceManager.Views.ManufactureView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PlanetaryResourceManager.Views"
+        xmlns:converter="clr-namespace:PlanetaryResourceManager.Converters"
+        Title="Manufacture Product" Height="500" Width="600">
+    <Window.Resources>
+        <converter:CurrencyConverter x:Key="moneyConv"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="5">
+            <Label Content="Target Product"/>
+            <local:CommodityControl DataContext="{Binding TargetProduct}"/>
+            <Label Content="Input A"/>
+            <local:CommodityControl DataContext="{Binding InputA}"/>
+            <Label Content="Input B"/>
+            <local:CommodityControl DataContext="{Binding InputB}"/>
+        </StackPanel>
+        <Grid Grid.Column="1" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Batch Size" Margin="5"/>
+            <TextBox Text="{Binding BatchSize}" Margin="5" Grid.Column="1"/>
+            <Button Content="Calculate" Command="{Binding CalculateCommand}" Margin="5" Grid.Column="2"/>
+
+            <TextBlock Text="Input Quantity" Grid.Row="1" Margin="5,15,5,5"/>
+            <TextBlock Text="{Binding InputQuantity}" Margin="20,15,5,5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <TextBlock Text="Output Quantity" Grid.Row="2" Margin="5"/>
+            <TextBlock Text="{Binding OutputQuantity}" Margin="20,5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <TextBlock Text="Purchase Cost" Grid.Row="3" Margin="5"/>
+            <TextBlock Text="{Binding PurchaseCost, Converter={StaticResource moneyConv}}" Margin="20,5" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <TextBlock Text="Expenses" Grid.Row="4" Margin="5"/>
+            <TextBlock Text="{Binding Expenses, Converter={StaticResource moneyConv}}" Margin="20,5" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <TextBlock Text="Sales Cost" Grid.Row="5" Margin="5"/>
+            <TextBlock Text="{Binding SaleCost, Converter={StaticResource moneyConv}}" Margin="20,5" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <TextBlock Text="Profit Margin" Grid.Row="6" Margin="5"/>
+            <TextBlock Text="{Binding ProfitMargin, Converter={StaticResource moneyConv}}" Margin="20,5" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</Window>

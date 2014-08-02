@@ -1,0 +1,17 @@
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe.config
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.pdb
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csprojResolveAssemblyReference.cache
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\Views\CommodityControl.baml
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\Views\CommodityControl.g.cs
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\Views\ManufactureView.g.cs
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\App.g.cs
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager_MarkupCompile.cache
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager_MarkupCompile.lref
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\Views\ManufactureView.baml
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.g.resources
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.Properties.Resources.resources
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csproj.GenerateResource.Cache
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.exe
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.pdb
+C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
