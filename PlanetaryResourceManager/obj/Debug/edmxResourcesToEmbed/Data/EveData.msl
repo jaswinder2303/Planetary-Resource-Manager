@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EvePIDataModelStoreContainer" CdmEntityContainer="EvePIDataEntities">
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="EvePIDataModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="ProductionLevel" ColumnName="ProductionLevel" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Product" TypeName="EvePIDataModel.Product" StoreEntitySet="Product">
+      <EndProperty Name="Item1">
+        <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="ItemId" ColumnName="InputId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
