@@ -1,8 +1,51 @@
 ﻿<Window x:Class="PlanetaryResourceManager.Views.ProductionAnalysisView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ProductionAnalysisView" Height="300" Width="300">
+        xmlns:converter="clr-namespace:PlanetaryResourceManager.Converters"
+        Title="Production Analysis" Height="700" Width="800">
+    <Window.Resources>
+        <converter:CurrencyConverter x:Key="moneyConv"/>
+        <converter:VisibilityConverter x:Key="visibleConv"/>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="21"/>
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button Width="75" Height="21" Content="Start" Command="{Binding AnalyzeCommand}"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView AlternationCount="1" ItemsSource="{Binding AnalysisItems}" Margin="5,5,5,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="330" Header="Name" DisplayMemberBinding="{Binding Product.Name}"/>
+                    <GridViewColumn Width="130" Header="Production Cost" 
+                                    DisplayMemberBinding="{Binding ProductionCost, Converter={StaticResource moneyConv}}"/>
+                    <GridViewColumn Width="130" Header="Sale Value" 
+                                    DisplayMemberBinding="{Binding SaleValue, Converter={StaticResource moneyConv}}"/>
+                    <GridViewColumn Width="130" Header="Profit Margin" 
+                                    DisplayMemberBinding="{Binding ProfitMargin, Converter={StaticResource moneyConv}}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="1" Margin="0, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Production Level" Margin="5,0"/>
+                <ComboBox Grid.Column="1" Margin="5,0" Width="120" ItemsSource="{Binding ProductionLevels}"
+                          SelectedValue="{Binding CurrentProductionLevel}"/>
+            </StackPanel>
+            <Button Grid.Column="1" Content="Load" Command="{Binding LoadCommand}"/>
+            <Button Grid.Column="2" Content="Start" Command="{Binding AnalyzeCommand}"/>
+            <ProgressBar Grid.Column="3" Margin="5,0" Value="{Binding CurrentProgress}" Maximum="100"
+                         Visibility="{Binding AnalysisInProgress, Converter={StaticResource visibleConv}}"/>
+        </Grid>
     </Grid>
 </Window>
