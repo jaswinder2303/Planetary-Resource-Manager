@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviours\ItemSelectorBehaviour.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\CurrencyConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />

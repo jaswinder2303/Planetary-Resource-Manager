@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converter="clr-namespace:PlanetaryResourceManager.Converters"
-        Title="Production Analysis" Height="700" Width="800">
+        xmlns:behaviour="clr-namespace:PlanetaryResourceManager.Behaviours"
+        Title="Production Analysis" Height="700" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <converter:CurrencyConverter x:Key="moneyConv"/>
         <converter:VisibilityConverter x:Key="visibleConv"/>
@@ -17,7 +18,8 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListView AlternationCount="1" ItemsSource="{Binding AnalysisItems}" Margin="5,5,5,0">
+        <ListView AlternationCount="1" ItemsSource="{Binding AnalysisItems}" Margin="5,5,5,0"
+                  behaviour:ItemSelectorBehaviour.ItemDoubleClicked="{Binding ShowDetails}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="330" Header="Name" DisplayMemberBinding="{Binding Product.Name}"/>

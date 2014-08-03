@@ -9,10 +9,9 @@ namespace PlanetaryResourceManager.Helpers
 {
     class ProductionHelper
     {
-        private const int BatchSize = 8000;
-        private const double Expenses = 60000000;
+        internal const int BatchSize = 8000;
 
-        public static ProductionResult Calculate(Product product, List<RawMaterial> materials)
+        public static ProductionResult Calculate(Product product, List<RawMaterial> materials, int batchSize = BatchSize)
         {
             if (materials.Count != 2)
             {
@@ -20,12 +19,12 @@ namespace PlanetaryResourceManager.Helpers
             }
 
             ProductionResult result = new ProductionResult();
-            result.InputQuantity = product.InputBatchSize * BatchSize;
-            result.OutputQuantity = product.OutputBatchSize * BatchSize;
+            result.InputQuantity = product.InputBatchSize * batchSize;
+            result.OutputQuantity = product.OutputBatchSize * batchSize;
             result.SaleCost = product.Price * result.OutputQuantity;
             result.Expenses = (result.InputQuantity * materials[0].ImportCost) + (result.InputQuantity * materials[1].ImportCost) + (result.OutputQuantity * product.ExportCost);
             result.PurchaseCost = (materials[0].Price * result.InputQuantity) + (materials[1].Price * result.InputQuantity);
-            result.ProfitMargin = result.SaleCost - (result.PurchaseCost + Expenses);
+            result.ProfitMargin = result.SaleCost - (result.PurchaseCost + result.Expenses);
 
             return result;
         }

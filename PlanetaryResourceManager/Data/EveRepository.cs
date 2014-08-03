@@ -33,16 +33,16 @@ namespace PlanetaryResourceManager.Data
                 }).ToList()
             }).ToList();
 
-            //foreach (var item in items)
-            //{
-            //    while (item.Materials.Count < 2)
-            //    {
-            //        item.Materials.Add(new RawMaterial
-            //        {
-            //            Name = "None"
-            //        });
-            //    }
-            //}
+            foreach (var item in items)
+            {
+                while (item.Materials.Count < 2)
+                {
+                    item.Materials.Add(new RawMaterial
+                    {
+                        Name = "None"
+                    });
+                }
+            }
 
             return items;
         }

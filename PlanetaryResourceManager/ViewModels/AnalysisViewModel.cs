@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
+using PlanetaryResourceManager.Views;
 
 namespace PlanetaryResourceManager.ViewModels
 {
@@ -37,6 +38,7 @@ namespace PlanetaryResourceManager.ViewModels
 
             AnalyzeCommand = new DelegateCommand(Analyze);
             LoadCommand = new DelegateCommand(LoadProductionItems);
+            ShowDetails = new DelegateCommand(ShowProductionDetails);
             AnalysisItems = new ObservableCollection<AnalysisItem>();
             LoadProductionItems(null);
         }
@@ -46,6 +48,7 @@ namespace PlanetaryResourceManager.ViewModels
         public string CurrentProductionLevel { get; set; }
         public ICommand AnalyzeCommand { get; set; }
         public ICommand LoadCommand { get; set; }
+        public ICommand ShowDetails { get; set; }
         public int CurrentProgress
         {
             get { return _currentProgress; }
@@ -74,11 +77,28 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void LoadProductionItems(object arg)
         {
-            AnalysisItems.Clear();
             _productionLevel = _productionLevels[CurrentProductionLevel];
             _analysisItems = _repository.GetProductionItems(_productionLevel);
-            _analysisItems.ForEach(item => AnalysisItems.Add(item));
-            //AnalysisItems = new ObservableCollection<AnalysisItem>(_analysisItems);
+            RebuildList();
+        }
+
+        private void RebuildList()
+        {
+            AnalysisItems.Clear();
+            _analysisItems.OrderByDescending(member => member.ProfitMargin).ToList().ForEach(item => AnalysisItems.Add(item));
+        }
+
+        private void ShowProductionDetails(object arg)
+        {
+            var item = arg as AnalysisItem;
+
+            if (item != null)
+            {
+                var viewModel = new ManufactureViewModel(item);
+                var dialog = new ManufactureView();
+                dialog.DataContext = viewModel;
+                dialog.ShowDialog();
+            }
         }
 
         private async void Analyze(object obj)
@@ -89,6 +109,11 @@ namespace PlanetaryResourceManager.ViewModels
             var progress = new Progress<int>(percent =>
             {
                 CurrentProgress = percent;
+
+                if (CurrentProgress == 100)
+                {
+                    RebuildList();
+                }
             });
 
             await Task.Run(() => Analyze(progress));
@@ -99,7 +124,7 @@ namespace PlanetaryResourceManager.ViewModels
             MarketDataHelper helper = new MarketDataHelper("http://api.eve-central.com/api/quicklook");
             int index = 0;
 
-            foreach (var item in AnalysisItems)
+            foreach (var item in _analysisItems)
             {
                 MarketDataRequest request = new MarketDataRequest
                 {
@@ -133,7 +158,7 @@ namespace PlanetaryResourceManager.ViewModels
                 item.ProfitMargin = productionResult.ProfitMargin;
                 item.UpdateProperties();
 
-                var currentProgress = ((double)++index / AnalysisItems.Count) * 100;
+                var currentProgress = ((double)++index / _analysisItems.Count) * 100;
                 progress.Report((int)currentProgress);
             }
 

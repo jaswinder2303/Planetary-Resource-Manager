@@ -1,4 +1,5 @@
 ﻿using PlanetaryResourceManager.Commands;
+using PlanetaryResourceManager.Helpers;
 using PlanetaryResourceManager.Models;
 using System;
 using System.Collections.Generic;
@@ -25,47 +26,60 @@ namespace PlanetaryResourceManager.ViewModels
         public ICommand CalculateCommand { get; set; }
 
 
-        public ManufactureViewModel()
+        public ManufactureViewModel() : this(null)
         {
-            TargetProduct = new Product
+            
+        }
+
+        public ManufactureViewModel(AnalysisItem item)
+        {
+            if (item == null)
             {
-                Name = "Microfiber Sheilding",
-                Price = 11800.00,
-                InputBatchSize = 40,
-                OutputBatchSize = 5,
-                ExportCost = 1224
-            };
+                item = new AnalysisItem
+                {
+                    Product = new Product
+                    {
+                        Name = "Microfiber Sheilding",
+                        Price = 11800.00,
+                        InputBatchSize = 40,
+                        OutputBatchSize = 5,
+                        ExportCost = 1224
+                    },
+                    Materials = new List<RawMaterial>{
+                        new RawMaterial
+                        {
+                            Name = "Silicon",
+                            Price = 600,
+                            ImportCost = 34
+                        },
+                        new RawMaterial
+                        {
+                            Name = "Industrial Fiber",
+                            Price = 500,
+                            ImportCost = 34
+                        }
+                    }
+                };
+            }
 
-            InputA = new RawMaterial
-            {
-                Name = "Silicon",
-                Price = 600,
-                ImportCost = 34
-            };
-
-            InputB = new RawMaterial
-            {
-                Name = "Industrial Fiber",
-                Price = 500,
-                ImportCost = 34
-            };
-
-            BatchSize = 8000;
-            Expenses = 60000000;
-
+            TargetProduct = item.Product;
+            InputA = item.Materials[0];
+            InputB = item.Materials[1];
+            BatchSize = ProductionHelper.BatchSize;
             CalculateCommand = new DelegateCommand(Calculate);
-
             Calculate(null);
         }
 
+
         private void Calculate(object arg)
         {
-            InputQuantity = TargetProduct.InputBatchSize * BatchSize;
-            OutputQuantity = TargetProduct.OutputBatchSize * BatchSize;
-            SaleCost = TargetProduct.Price * OutputQuantity;
-            Expenses = (InputQuantity * InputA.ImportCost) + (InputQuantity * InputB.ImportCost) + (OutputQuantity * TargetProduct.ExportCost);
-            PurchaseCost = (InputA.Price * InputQuantity) + (InputB.Price * InputQuantity);
-            ProfitMargin = SaleCost - (PurchaseCost + Expenses);
+            var result = ProductionHelper.Calculate(TargetProduct, new List<RawMaterial> { InputA, InputB }, BatchSize);
+            InputQuantity = result.InputQuantity;
+            OutputQuantity = result.OutputQuantity;
+            SaleCost = result.SaleCost;
+            Expenses = result.Expenses;
+            PurchaseCost = result.PurchaseCost;
+            ProfitMargin = result.ProfitMargin;
 
             RaisePropertyChanged("InputQuantity");
             RaisePropertyChanged("OutputQuantity");

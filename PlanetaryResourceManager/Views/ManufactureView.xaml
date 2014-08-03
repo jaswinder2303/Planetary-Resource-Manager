@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PlanetaryResourceManager.Views"
         xmlns:converter="clr-namespace:PlanetaryResourceManager.Converters"
-        Title="Manufacture Product" Height="500" Width="600">
+        Title="Manufacture Product" Height="500" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <converter:CurrencyConverter x:Key="moneyConv"/>
     </Window.Resources>
