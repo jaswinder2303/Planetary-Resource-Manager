@@ -68,8 +68,15 @@
     </ApplicationDefinition>
     <Compile Include="Behaviours\ItemSelectorBehaviour.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="Converters\CurrencyConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Data\Category.cs">
+      <DependentUpon>EveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Commodity.cs">
+      <DependentUpon>EveData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\EveData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +93,9 @@
       <DependentUpon>EveData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\EveRepository.cs" />
+    <Compile Include="Data\Group.cs">
+      <DependentUpon>EveData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Item.cs">
       <DependentUpon>EveData.tt</DependentUpon>
     </Compile>
@@ -96,10 +106,20 @@
     <Compile Include="Models\MarketDataResponse.cs" />
     <Compile Include="Models\MarketOrder.cs" />
     <Compile Include="Models\ProductionResult.cs" />
+    <Compile Include="Models\TradeCategory.cs" />
+    <Compile Include="Models\TradeGroup.cs" />
+    <Compile Include="Models\TradeItem.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ManagementViewModel.cs" />
     <Compile Include="ViewModels\ManufactureViewModel.cs" />
+    <Compile Include="ViewModels\TradeAnalysisViewModel.cs" />
+    <Compile Include="ViewModels\TradeReportViewModel.cs" />
     <Compile Include="Views\CommodityControl.xaml.cs">
       <DependentUpon>CommodityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EveManagementWindow.xaml.cs">
+      <DependentUpon>EveManagementWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManufactureView.xaml.cs">
       <DependentUpon>ManufactureView.xaml</DependentUpon>
@@ -111,7 +131,17 @@
     <Compile Include="Views\ProductionAnalysisView.xaml.cs">
       <DependentUpon>ProductionAnalysisView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TradeAnalysisView.xaml.cs">
+      <DependentUpon>TradeAnalysisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TradingReportWindow.xaml.cs">
+      <DependentUpon>TradingReportWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\CommodityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EveManagementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,6 +150,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductionAnalysisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TradeAnalysisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TradingReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

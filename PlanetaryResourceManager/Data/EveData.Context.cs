@@ -26,5 +26,8 @@ namespace PlanetaryResourceManager.Data
         }
     
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Commodity> Commodities { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
     }
 }

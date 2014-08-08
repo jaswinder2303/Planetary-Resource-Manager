@@ -11,12 +11,12 @@ namespace PlanetaryResourceManager.Data
     {
         private EvePIDataEntities _context;
 
-        public EveRepository()
+        internal EveRepository()
         {
             _context = new EvePIDataEntities();
         }
 
-        public List<AnalysisItem> GetProductionItems(int level)
+        internal List<AnalysisItem> GetProductionItems(int level)
         {
             var items = _context.Items.Where(arg => arg.ProductionLevel == level).Select(item => new AnalysisItem
             {
@@ -45,6 +45,29 @@ namespace PlanetaryResourceManager.Data
             }
 
             return items;
+        }
+
+        internal List<TradeCategory> GetTradeCategories()
+        {
+            var items = _context.Categories.ToList();
+
+            var categories = items.Select(arg => new TradeCategory
+            {
+                Name = arg.Name,
+                TradeScore = arg.TradeScore,
+                LastScanDate = arg.LastScanDate,
+                Groups = arg.Groups.Select(group => new TradeGroup
+                {
+                    Name = group.Name,
+                    Items = group.Commodities.Select(item => new TradeItem
+                    {
+                        Name = item.Name,
+                        Id = item.Id
+                    }).ToList()
+                }).ToList()
+            }).ToList();
+
+            return categories;
         }
     }
 }

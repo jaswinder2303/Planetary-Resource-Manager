@@ -20,7 +20,6 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.pdb
-C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csprojResolveAssemblyReference.cache
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\CommodityControl.baml
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\CommodityControl.g.cs
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\ManufactureView.g.cs
@@ -38,3 +37,9 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.xml
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\EveManagementWindow.baml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\EveManagementWindow.g.cs
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradeAnalysisView.g.cs
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradeAnalysisView.baml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradingReportWindow.g.cs
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradingReportWindow.baml

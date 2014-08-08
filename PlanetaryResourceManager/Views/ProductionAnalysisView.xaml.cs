@@ -17,7 +17,7 @@ namespace PlanetaryResourceManager.Views
     /// <summary>
     /// Interaction logic for ProductionAnalysisView.xaml
     /// </summary>
-    public partial class ProductionAnalysisView : Window
+    public partial class ProductionAnalysisView : UserControl
     {
         public ProductionAnalysisView()
         {

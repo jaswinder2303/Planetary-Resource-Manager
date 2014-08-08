@@ -14,11 +14,21 @@ namespace PlanetaryResourceManager.Models
         public List<MarketOrder> BuyOrders { get; set; }
         public List<MarketOrder> SellOrders { get; set; }
 
-        public MarketOrder LowestSellOrder(int minimumQuantity)
+        public MarketOrder LowestSellOrder(int? minimumQuantity)
         {
-            int filter = minimumQuantity > UseableQuantity ? minimumQuantity : UseableQuantity;
+            MarketOrder item = null;
 
-            var item = SellOrders.Where(arg => arg.Quantity > filter).FirstOrDefault();
+            if (SellOrders != null)
+            {
+                int filter = 0;
+
+                if (minimumQuantity.HasValue)
+                {
+                    filter = minimumQuantity.Value > UseableQuantity ? minimumQuantity.Value : UseableQuantity;
+                }
+
+                item = SellOrders.Where(arg => arg.Quantity > filter).FirstOrDefault();
+            }
 
             return item;
         }
@@ -27,7 +37,30 @@ namespace PlanetaryResourceManager.Models
         {
             get
             {
-                return BuyOrders.FirstOrDefault();
+                MarketOrder item = null;
+
+                if (BuyOrders != null)
+                {
+                    item = BuyOrders.FirstOrDefault();
+                }
+
+                return item;
+            }
+        }
+
+        public List<MarketOrder> BestBuyers
+        {
+            get
+            {
+                return BuyOrders.Take(10).ToList();
+            }
+        }
+
+        public List<MarketOrder> BestSellers
+        {
+            get
+            {
+                return SellOrders.Take(10).ToList();
             }
         }
     }

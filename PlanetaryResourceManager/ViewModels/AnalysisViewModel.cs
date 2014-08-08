@@ -13,7 +13,7 @@ using PlanetaryResourceManager.Views;
 
 namespace PlanetaryResourceManager.ViewModels
 {
-    public class AnalysisViewModel : INotifyPropertyChanged
+    class AnalysisViewModel : INotifyPropertyChanged
     {
         private const string MinimumOrder = "500000";
         private const int MinimumQuanity = 400000;
@@ -24,9 +24,9 @@ namespace PlanetaryResourceManager.ViewModels
         private int _productionLevel;
         private bool _analysisInProgress;
 
-        public AnalysisViewModel()
+        public AnalysisViewModel(EveRepository repository)
         {
-            _repository = new EveRepository();
+            _repository = repository;
             _productionLevels = new Dictionary<string, int>{
                 {"Raw Materials", 1},
                 {"Processed Materials", 2},
@@ -121,14 +121,16 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void Analyze(IProgress<int> progress)
         {
-            MarketDataHelper helper = new MarketDataHelper("http://api.eve-central.com/api/quicklook");
+            MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook);
             int index = 0;
 
             foreach (var item in _analysisItems)
             {
                 MarketDataRequest request = new MarketDataRequest
                 {
-                    TypeId = item.Product.ItemId.ToString()
+                    TypeId = item.Product.ItemId.ToString(),
+                    SystemId = MarketDataHelper.Jita,
+                    Duration = MarketDataHelper.Freshness
                 };
 
                 var response = helper.GetData(request);

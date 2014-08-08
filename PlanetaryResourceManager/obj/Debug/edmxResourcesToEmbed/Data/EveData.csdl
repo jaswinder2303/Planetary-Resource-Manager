@@ -6,6 +6,17 @@
       <End Role="Item" EntitySet="Items" />
       <End Role="Item1" EntitySet="Items" />
     </AssociationSet>
+    <EntitySet Name="Categories" EntityType="EvePIDataModel.Category" />
+    <EntitySet Name="Commodities" EntityType="EvePIDataModel.Commodity" />
+    <EntitySet Name="Groups" EntityType="EvePIDataModel.Group" />
+    <AssociationSet Name="FK_Group_Category" Association="EvePIDataModel.FK_Group_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Group" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commodity_Group" Association="EvePIDataModel.FK_Commodity_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Commodity" EntitySet="Commodities" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Item">
     <Key>
@@ -20,5 +31,58 @@
   <Association Name="Product">
     <End Type="EvePIDataModel.Item" Role="Item" Multiplicity="*" />
     <End Type="EvePIDataModel.Item" Role="Item1" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Groups" Relationship="EvePIDataModel.FK_Group_Category" FromRole="Category" ToRole="Group" />
+    <Property Name="LastScanDate" Type="DateTime" Precision="3" />
+    <Property Name="TradeScore" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Commodity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="GroupId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Group" Relationship="EvePIDataModel.FK_Commodity_Group" FromRole="Commodity" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="EvePIDataModel.FK_Group_Category" FromRole="Group" ToRole="Category" />
+    <NavigationProperty Name="Commodities" Relationship="EvePIDataModel.FK_Commodity_Group" FromRole="Group" ToRole="Commodity" />
+  </EntityType>
+  <Association Name="FK_Group_Category">
+    <End Type="EvePIDataModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="EvePIDataModel.Group" Role="Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commodity_Group">
+    <End Type="EvePIDataModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="EvePIDataModel.Commodity" Role="Commodity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commodity">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

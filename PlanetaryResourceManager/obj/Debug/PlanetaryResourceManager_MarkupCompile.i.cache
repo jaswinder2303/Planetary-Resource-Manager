@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\App.xaml
-31804476511
+6-1599221010
 
-32551325895
+462032066606
 17383903162
-Views\CommodityControl.xaml;Views\ManufactureView.xaml;Views\ProductionAnalysisView.xaml;
+Views\CommodityControl.xaml;Views\EveManagementWindow.xaml;Views\ManufactureView.xaml;Views\ProductionAnalysisView.xaml;Views\TradeAnalysisView.xaml;Views\TradingReportWindow.xaml;
 
 True
 

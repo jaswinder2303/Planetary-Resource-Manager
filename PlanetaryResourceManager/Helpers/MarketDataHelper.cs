@@ -7,8 +7,11 @@ namespace PlanetaryResourceManager.Helpers
 {
     class MarketDataHelper
     {
-        WebClient _client;
-        string _host;
+        private WebClient _client;
+        private string _host;
+        internal const string Jita = "30000142";
+        internal const string Freshness = "24";
+        internal const string QuickLook = "http://api.eve-central.com/api/quicklook";
 
         public MarketDataHelper(string host)
         {
@@ -22,7 +25,11 @@ namespace PlanetaryResourceManager.Helpers
             _client.QueryString.Clear();
             _client.QueryString.Add("typeid", request.TypeId);
             _client.QueryString.Add("sethours", request.Duration);
-            _client.QueryString.Add("usesystem", request.SystemId);
+
+            if (request.SystemId != null)
+            {
+                _client.QueryString.Add("usesystem", request.SystemId);
+            }
 
             if (request.MinimumQuantity != null)
             {
@@ -39,16 +46,8 @@ namespace PlanetaryResourceManager.Helpers
                                 select new MarketDataResponse
                                 {
                                     Commodity = item.Element("itemname").Value,
-                                    BuyOrders = buyOrders.Select(order => new MarketOrder
-                                    {
-                                        Price = double.Parse(order.Element("price").Value),
-                                        Quantity = int.Parse(order.Element("vol_remain").Value)
-                                    }).ToList(),
-                                    SellOrders = sellOrders.Select(order => new MarketOrder
-                                    {
-                                        Price = double.Parse(order.Element("price").Value),
-                                        Quantity = int.Parse(order.Element("vol_remain").Value)
-                                    }).ToList()
+                                    BuyOrders = buyOrders.Select(order => MarketOrder.Load(order)).ToList(),
+                                    SellOrders = sellOrders.Select(order => MarketOrder.Load(order)).ToList()
                                 }).FirstOrDefault();
 
             return responseData;

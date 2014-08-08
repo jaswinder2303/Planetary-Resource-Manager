@@ -17,8 +17,8 @@ namespace PlanetaryResourceManager
     {
         private void OnStartup(object sender, StartupEventArgs e)
         {
-            var viewModel = new AnalysisViewModel();
-            var dialog = new ProductionAnalysisView();
+            var viewModel = new ManagementViewModel();
+            var dialog = new EveManagementWindow();
             dialog.DataContext = viewModel;
             dialog.ShowDialog();
         }

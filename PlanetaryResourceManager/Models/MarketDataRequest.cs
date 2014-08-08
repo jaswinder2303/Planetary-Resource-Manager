@@ -8,12 +8,6 @@ namespace PlanetaryResourceManager.Models
 {
     class MarketDataRequest
     {
-        public MarketDataRequest()
-        {
-            Duration = "24";
-            SystemId = "30000142";
-        }
-
         public string TypeId { get; set; }
         public string Duration { get; set; }
         public string SystemId { get; set; }
