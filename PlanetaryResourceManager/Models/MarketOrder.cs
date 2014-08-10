@@ -14,6 +14,7 @@ namespace PlanetaryResourceManager.Models
         public string Station { get; set; }
         public double Security { get; set; }
         public int MinimumVolume { get; set; }
+        public string ReportedDate { get; set; }
 
         internal static MarketOrder Load(XElement data)
         {
@@ -23,7 +24,8 @@ namespace PlanetaryResourceManager.Models
                 Quantity = int.Parse(data.Element("vol_remain").Value),
                 MinimumVolume = int.Parse(data.Element("min_volume").Value),
                 Security = double.Parse(data.Element("security").Value),
-                Station = data.Element("station_name").Value
+                Station = data.Element("station_name").Value,
+                ReportedDate = data.Element("reported_time").Value
             };
         }
     }

@@ -8,11 +8,20 @@ namespace PlanetaryResourceManager.Models
 {
     class MarketDataResponse
     {
-        const int UseableQuantity = 250000;
+        private const int UseableQuantity = 250000;
+        public const double NullSec = -1;
+        public const double LowSec = 0.0;
+        public const double HighSec = 0.4;
+
+        public MarketDataResponse()
+        {
+            SecurityLevel = NullSec;
+        }
 
         public string Commodity { get; set; }
         public List<MarketOrder> BuyOrders { get; set; }
         public List<MarketOrder> SellOrders { get; set; }
+        public double SecurityLevel { get; set; }
 
         public MarketOrder LowestSellOrder(int? minimumQuantity)
         {
@@ -27,7 +36,7 @@ namespace PlanetaryResourceManager.Models
                     filter = minimumQuantity.Value > UseableQuantity ? minimumQuantity.Value : UseableQuantity;
                 }
 
-                item = SellOrders.Where(arg => arg.Quantity > filter).FirstOrDefault();
+                item = SellOrders.Where(arg => arg.Quantity > filter && arg.Security > SecurityLevel).FirstOrDefault();
             }
 
             return item;
@@ -41,7 +50,7 @@ namespace PlanetaryResourceManager.Models
 
                 if (BuyOrders != null)
                 {
-                    item = BuyOrders.FirstOrDefault();
+                    item = BuyOrders.Where(arg => arg.Security > SecurityLevel).FirstOrDefault();
                 }
 
                 return item;
@@ -52,7 +61,7 @@ namespace PlanetaryResourceManager.Models
         {
             get
             {
-                return BuyOrders.Take(10).ToList();
+                return BuyOrders.Where(arg => arg.Security > SecurityLevel).Take(25).ToList();
             }
         }
 
@@ -60,7 +69,7 @@ namespace PlanetaryResourceManager.Models
         {
             get
             {
-                return SellOrders.Take(10).ToList();
+                return SellOrders.Where(arg => arg.Security > SecurityLevel).Take(25).ToList();
             }
         }
     }

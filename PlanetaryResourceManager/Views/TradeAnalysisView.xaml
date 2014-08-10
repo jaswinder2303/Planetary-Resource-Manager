@@ -39,6 +39,11 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Security Level" Margin="5,0"/>
+                    <ComboBox ItemsSource="{Binding SecurityLevels}" Width="120"
+                              SelectedValue="{Binding CurrentSecurityLevel}"/>
+                </StackPanel>
             </StackPanel>
 
             <ListView AlternationCount="1" ItemsSource="{Binding TradeGroups}" Margin="5,5,5,0" Grid.Column="1" 

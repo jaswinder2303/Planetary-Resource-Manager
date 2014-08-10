@@ -43,3 +43,4 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradeAnalysisView.baml
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradingReportWindow.g.cs
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\TradingReportWindow.baml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csprojResolveAssemblyReference.cache

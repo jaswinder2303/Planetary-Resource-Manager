@@ -16,6 +16,8 @@
                                     DisplayMemberBinding="{Binding MinimumVolume}"/>
             <GridViewColumn Width="80" Header="Security" 
                                     DisplayMemberBinding="{Binding Security}"/>
+            <GridViewColumn Width="120" Header="Date" 
+                                    DisplayMemberBinding="{Binding ReportedDate}"/>
         </GridView>
         <Style TargetType="Button">
             <Setter Property="Width" Value="75"/>
@@ -49,11 +51,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Buy Orders" HorizontalAlignment="Center"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding CurrentItem.Data.BestBuyers}" 
+            <TextBlock Text="Sell Orders" HorizontalAlignment="Center"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding CurrentItem.Data.BestSellers}" 
                       Style="{DynamicResource MarketOrderStyle}"/>
-            <TextBlock Grid.Column="1" Text="Sell Orders" HorizontalAlignment="Center"/>
-            <ListView Grid.Column="1" Grid.Row="1" ItemsSource="{Binding CurrentItem.Data.BestSellers}" 
+            <TextBlock Grid.Column="1" Text="Buy Orders" HorizontalAlignment="Center"/>
+            <ListView Grid.Column="1" Grid.Row="1" ItemsSource="{Binding CurrentItem.Data.BestBuyers}" 
                       Style="{DynamicResource MarketOrderStyle}"/>
         </Grid>
     </Grid>

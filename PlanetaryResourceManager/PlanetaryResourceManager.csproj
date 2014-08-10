@@ -99,6 +99,7 @@
     <Compile Include="Data\Item.cs">
       <DependentUpon>EveData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Events\ProgressManager.cs" />
     <Compile Include="Helpers\MarketDataHelper.cs" />
     <Compile Include="Helpers\ProductionHelper.cs" />
     <Compile Include="Models\AnalysisItem.cs" />

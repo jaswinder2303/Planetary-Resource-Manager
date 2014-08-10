@@ -26,5 +26,15 @@ namespace PlanetaryResourceManager.Models
                 }
             }
         }
+
+        internal void Update(double securityLevel)
+        {
+            if (Data != null)
+            {
+                Data.SecurityLevel = securityLevel;
+                Data.SellOrders = Data.SellOrders.OrderBy(arg => arg.Price).ToList();
+                Data.BuyOrders = Data.BuyOrders.OrderByDescending(arg => arg.Price).ToList();
+            }
+        }
     }
 }

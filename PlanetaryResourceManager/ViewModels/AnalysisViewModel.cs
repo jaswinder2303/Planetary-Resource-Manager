@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
 using PlanetaryResourceManager.Views;
+using PlanetaryResourceManager.Events;
 
 namespace PlanetaryResourceManager.ViewModels
 {
@@ -110,6 +111,8 @@ namespace PlanetaryResourceManager.ViewModels
             {
                 CurrentProgress = percent;
 
+                ProgressManager.ReportProgress(CurrentProgress);
+
                 if (CurrentProgress == 100)
                 {
                     RebuildList();
@@ -145,7 +148,8 @@ namespace PlanetaryResourceManager.ViewModels
                     request = new MarketDataRequest
                     {
                         TypeId = input.ItemId.ToString(),
-                        MinimumQuantity = AnalysisViewModel.MinimumOrder
+                        Duration = MarketDataHelper.Freshness
+                        //MinimumQuantity = MinimumOrder
                     };
 
                     response = helper.GetData(request);

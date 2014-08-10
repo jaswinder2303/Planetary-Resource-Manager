@@ -1,5 +1,6 @@
 ﻿using PlanetaryResourceManager.Commands;
 using PlanetaryResourceManager.Data;
+using PlanetaryResourceManager.Events;
 using PlanetaryResourceManager.Helpers;
 using PlanetaryResourceManager.Models;
 using PlanetaryResourceManager.Views;
@@ -21,14 +22,23 @@ namespace PlanetaryResourceManager.ViewModels
         private EveRepository _repository;
         private TradeCategory _currentCategory;
         private List<TradeCategory> _categories;
+        private Dictionary<string, double> _securityLevels;
+        private string _currentSecurityLevel;
 
         public TradeAnalysisViewModel(EveRepository repository)
         {
             _repository = repository;
             _categories = _repository.GetTradeCategories();
+            _currentSecurityLevel = "All";
+            _securityLevels = new Dictionary<string, double>{
+                {"All", -1},
+                {"Low Sec", 0.1},
+                {"High Sec", 0.5}
+            };
+
+            SecurityLevels = new ObservableCollection<string>(_securityLevels.Keys);
             TradeCategories = new ObservableCollection<TradeCategory>(_categories);
             TradeGroups = new ObservableCollection<TradeGroup>();
-
             AnalyzeCommand = new DelegateCommand(Analyze);
             ShowDetails = new DelegateCommand(ShowMarketDetails);
         }
@@ -37,6 +47,22 @@ namespace PlanetaryResourceManager.ViewModels
         public ICommand ShowDetails { get; set; }
         public ObservableCollection<TradeCategory> TradeCategories { get; set; }
         public ObservableCollection<TradeGroup> TradeGroups { get; set; }
+        public ObservableCollection<string> SecurityLevels { get; set; }
+
+        public string CurrentSecurityLevel
+        {
+            get { return _currentSecurityLevel; }
+            set
+            {
+                _currentSecurityLevel = value;
+
+                if (CurrentCategory != null)
+                {
+                    CurrentCategory.Groups.ForEach(arg => arg.Update(_securityLevels[CurrentSecurityLevel]));
+                    LoadTradeGroups(CurrentCategory);
+                }
+            }
+        }
 
         public int CurrentProgress
         {
@@ -86,6 +112,8 @@ namespace PlanetaryResourceManager.ViewModels
             {
                 CurrentProgress = percent;
 
+                ProgressManager.ReportProgress(CurrentProgress);
+
                 if (CurrentProgress == 100)
                 {
                     LoadTradeGroups(CurrentCategory);
@@ -126,7 +154,7 @@ namespace PlanetaryResourceManager.ViewModels
                     item.Data = helper.GetData(request);
                 }
 
-                group.Update();
+                group.Update(_securityLevels[CurrentSecurityLevel]);
                 var currentProgress = ((double)++index / _currentCategory.Groups.Count) * 100;
                 progress.Report((int)currentProgress);
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlanetaryResourceManager.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace PlanetaryResourceManager.Views
         public EveManagementWindow()
         {
             InitializeComponent();
+
+            ProgressManager.OnProgressChanged += ProgressManager_OnProgressChanged;
+        }
+
+        void ProgressManager_OnProgressChanged(int progress)
+        {
+            ProgressInfo.ProgressValue = (double)progress / 100;
         }
     }
 }

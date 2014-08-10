@@ -16,7 +16,7 @@ namespace PlanetaryResourceManager.Helpers
         public MarketDataHelper(string host)
         {
             _client = new WebClient();
-            _client.Headers.Add("User-Agent", "PI-Analysis");
+            _client.Headers.Add("User-Agent", "Market-Analysis");
             _host = host;
         }
 
