@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.ViewModels
 {
-    class ManagementViewModel : INotifyPropertyChanged
+    class ManagementViewModel : INotifyPropertyChanged, IDisposable
     {
+        private EveRepository _repository;
+
         public ManagementViewModel()
         {
-            EveRepository repository = new EveRepository();
-            ProductionViewModel = new AnalysisViewModel(repository);
-            TradeViewModel = new TradeAnalysisViewModel(repository);
+            _repository = new EveRepository();
+            ProductionViewModel = new AnalysisViewModel(_repository);
+            TradeViewModel = new TradeAnalysisViewModel(_repository);
         }
 
         public AnalysisViewModel ProductionViewModel { get; set; }
@@ -27,6 +29,14 @@ namespace PlanetaryResourceManager.ViewModels
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public void Dispose()
+        {
+            if (_repository != null)
+            {
+                _repository.Dispose();
             }
         }
     }

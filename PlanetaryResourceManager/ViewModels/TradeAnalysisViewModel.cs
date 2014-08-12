@@ -41,9 +41,11 @@ namespace PlanetaryResourceManager.ViewModels
             TradeGroups = new ObservableCollection<TradeGroup>();
             AnalyzeCommand = new DelegateCommand(Analyze);
             ShowDetails = new DelegateCommand(ShowMarketDetails);
+            StartAllCommand = new DelegateCommand(StartAll);
         }
 
         public ICommand AnalyzeCommand { get; set; }
+        public ICommand StartAllCommand { get; set; }
         public ICommand ShowDetails { get; set; }
         public ObservableCollection<TradeCategory> TradeCategories { get; set; }
         public ObservableCollection<TradeGroup> TradeGroups { get; set; }
@@ -103,6 +105,26 @@ namespace PlanetaryResourceManager.ViewModels
             }
         }
 
+        private async void StartAll(object obj)
+        {
+            CurrentProgress = 0;
+            IsAnalysisInProgress = true;
+
+            var progress = new Progress<int>(percent =>
+            {
+                CurrentProgress = percent;
+
+                ProgressManager.ReportProgress(CurrentProgress);
+
+                if (CurrentProgress == 100)
+                {
+                    LoadTradeGroups(CurrentCategory);
+                }
+            });
+
+            await Task.Run(() => AnalyzeAll(progress));
+        }
+
         private async void Analyze(object obj)
         {
             CurrentProgress = 0;
@@ -138,28 +160,62 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void Analyze(IProgress<int> progress)
         {
-            MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook);
-            int index = 0;
-
-            foreach (var group in _currentCategory.Groups)
+            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
             {
-                foreach (var item in group.Items)
-                {
-                    MarketDataRequest request = new MarketDataRequest
-                    {
-                        TypeId = item.Id.ToString(),
-                        Duration = MarketDataHelper.Freshness
-                    };
+                int index = 0;
 
-                    item.Data = helper.GetData(request);
+                foreach (var group in _currentCategory.Groups)
+                {
+                    foreach (var item in group.Items)
+                    {
+                        MarketDataRequest request = new MarketDataRequest
+                        {
+                            TypeId = item.Id.ToString(),
+                            Duration = MarketDataHelper.Freshness
+                        };
+
+                        item.Data = helper.GetData(request);
+                    }
+
+                    group.Update(_securityLevels[CurrentSecurityLevel]);
+                    var currentProgress = ((double)++index / _currentCategory.Groups.Count) * 100;
+                    progress.Report((int)currentProgress);
                 }
 
-                group.Update(_securityLevels[CurrentSecurityLevel]);
-                var currentProgress = ((double)++index / _currentCategory.Groups.Count) * 100;
-                progress.Report((int)currentProgress);
+                IsAnalysisInProgress = false;
             }
+        }
 
-            IsAnalysisInProgress = false;
+        private void AnalyzeAll(IProgress<int> progress)
+        {
+            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
+            {
+                int index = 0;
+
+                foreach (var category in _categories)
+                {
+                    foreach (var group in category.Groups)
+                    {
+                        foreach (var item in group.Items)
+                        {
+                            MarketDataRequest request = new MarketDataRequest
+                            {
+                                TypeId = item.Id.ToString(),
+                                Duration = MarketDataHelper.Freshness
+                            };
+
+                            item.Data = helper.GetData(request);
+                        }
+
+                        group.Update(_securityLevels[CurrentSecurityLevel]);
+                    }
+
+                    var currentProgress = ((double)++index / _categories.Count) * 100;
+                    progress.Report((int)currentProgress);
+                }
+
+                IsAnalysisInProgress = false;
+            }
         }
     }
 }

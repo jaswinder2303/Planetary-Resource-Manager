@@ -1,11 +1,12 @@
 ﻿using PlanetaryResourceManager.Models;
+using System;
 using System.Linq;
 using System.Net;
 using System.Xml.Linq;
 
 namespace PlanetaryResourceManager.Helpers
 {
-    class MarketDataHelper
+    class MarketDataHelper : IDisposable
     {
         private WebClient _client;
         private string _host;
@@ -51,6 +52,14 @@ namespace PlanetaryResourceManager.Helpers
                                 }).FirstOrDefault();
 
             return responseData;
+        }
+
+        public void Dispose()
+        {
+            if (_client != null)
+            {
+                _client.Dispose();
+            }
         }
     }
 }

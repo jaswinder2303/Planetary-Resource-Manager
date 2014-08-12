@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.Data
 {
-    class EveRepository
+    class EveRepository : IDisposable
     {
         private EvePIDataEntities _context;
 
@@ -68,6 +68,14 @@ namespace PlanetaryResourceManager.Data
             }).ToList();
 
             return categories;
+        }
+
+        public void Dispose()
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

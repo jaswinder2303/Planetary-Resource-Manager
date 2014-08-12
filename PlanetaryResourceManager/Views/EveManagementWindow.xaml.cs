@@ -31,5 +31,15 @@ namespace PlanetaryResourceManager.Views
         {
             ProgressInfo.ProgressValue = (double)progress / 100;
         }
+
+        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var viewModel = DataContext as IDisposable;
+
+            if (viewModel != null)
+            {
+                viewModel.Dispose();
+            }
+        }
     }
 }

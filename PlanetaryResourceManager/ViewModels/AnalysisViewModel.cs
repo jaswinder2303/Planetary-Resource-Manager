@@ -124,51 +124,53 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void Analyze(IProgress<int> progress)
         {
-            MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook);
-            int index = 0;
-
-            foreach (var item in _analysisItems)
+            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
             {
-                MarketDataRequest request = new MarketDataRequest
-                {
-                    TypeId = item.Product.ItemId.ToString(),
-                    SystemId = MarketDataHelper.Jita,
-                    Duration = MarketDataHelper.Freshness
-                };
+                int index = 0;
 
-                var response = helper.GetData(request);
-                var order = response.HighestBuyOrder;
-                item.Product.Price = order != null ? order.Price : 0.0;
-                item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
-                item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
-                item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
-
-                foreach (var input in item.Materials)
+                foreach (var item in _analysisItems)
                 {
-                    request = new MarketDataRequest
+                    MarketDataRequest request = new MarketDataRequest
                     {
-                        TypeId = input.ItemId.ToString(),
+                        TypeId = item.Product.ItemId.ToString(),
+                        SystemId = MarketDataHelper.Jita,
                         Duration = MarketDataHelper.Freshness
-                        //MinimumQuantity = MinimumOrder
                     };
 
-                    response = helper.GetData(request);
-                    order = response.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
-                    input.Price = order != null ? order.Price : 0.0;
-                    input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
+                    var response = helper.GetData(request);
+                    var order = response.HighestBuyOrder;
+                    item.Product.Price = order != null ? order.Price : 0.0;
+                    item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
+                    item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
+                    item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
+
+                    foreach (var input in item.Materials)
+                    {
+                        request = new MarketDataRequest
+                        {
+                            TypeId = input.ItemId.ToString(),
+                            Duration = MarketDataHelper.Freshness
+                            //MinimumQuantity = MinimumOrder
+                        };
+
+                        response = helper.GetData(request);
+                        order = response.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
+                        input.Price = order != null ? order.Price : 0.0;
+                        input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
+                    }
+
+                    var productionResult = ProductionHelper.Calculate(item.Product, item.Materials);
+                    item.ProductionCost = productionResult.PurchaseCost;
+                    item.SaleValue = productionResult.SaleCost;
+                    item.ProfitMargin = productionResult.ProfitMargin;
+                    item.UpdateProperties();
+
+                    var currentProgress = ((double)++index / _analysisItems.Count) * 100;
+                    progress.Report((int)currentProgress);
                 }
 
-                var productionResult = ProductionHelper.Calculate(item.Product, item.Materials);
-                item.ProductionCost = productionResult.PurchaseCost;
-                item.SaleValue = productionResult.SaleCost;
-                item.ProfitMargin = productionResult.ProfitMargin;
-                item.UpdateProperties();
-
-                var currentProgress = ((double)++index / _analysisItems.Count) * 100;
-                progress.Report((int)currentProgress);
+                AnalysisInProgress = false;
             }
-
-            AnalysisInProgress = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -47,7 +47,8 @@
             </StackPanel>
 
             <ListView AlternationCount="1" ItemsSource="{Binding TradeGroups}" Margin="5,5,5,0" Grid.Column="1" 
-                      behaviour:ItemSelectorBehaviour.ItemDoubleClicked="{Binding ShowDetails}">
+                      behaviour:ItemSelectorBehaviour.ItemDoubleClicked="{Binding ShowDetails}"
+                      IsEnabled="{Binding IsAnalysisInProgress, Converter={StaticResource oppositeConv}}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="350" Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -60,11 +61,14 @@
         <Grid Grid.Row="1" Margin="5,10,5,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Content="Start" Command="{Binding AnalyzeCommand}" 
                     IsEnabled="{Binding IsAnalysisInProgress, Converter={StaticResource oppositeConv}}"/>
-            <ProgressBar Grid.Column="1" Value="{Binding CurrentProgress}"
+            <Button Content="Start All" Command="{Binding StartAllCommand}" Grid.Column="1"
+                    IsEnabled="{Binding IsAnalysisInProgress, Converter={StaticResource oppositeConv}}"/>
+            <ProgressBar Grid.Column="2" Value="{Binding CurrentProgress}"
                          Visibility="{Binding IsAnalysisInProgress, Converter={StaticResource visibleConv}}"/>
         </Grid>
     </Grid>
