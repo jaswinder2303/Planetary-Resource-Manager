@@ -60,7 +60,7 @@ namespace PlanetaryResourceManager.ViewModels
 
                 if (CurrentCategory != null)
                 {
-                    CurrentCategory.Groups.ForEach(arg => arg.Update(_securityLevels[CurrentSecurityLevel]));
+                    _categories.ForEach(cat => cat.Groups.ForEach(group => group.Update(_securityLevels[_currentSecurityLevel])));
                     LoadTradeGroups(CurrentCategory);
                 }
             }
@@ -183,6 +183,7 @@ namespace PlanetaryResourceManager.ViewModels
                 }
 
                 IsAnalysisInProgress = false;
+                _currentCategory.IsProcessed = true;
             }
         }
 
@@ -210,6 +211,7 @@ namespace PlanetaryResourceManager.ViewModels
                         group.Update(_securityLevels[CurrentSecurityLevel]);
                     }
 
+                    category.IsProcessed = true;
                     var currentProgress = ((double)++index / _categories.Count) * 100;
                     progress.Report((int)currentProgress);
                 }

@@ -33,9 +33,16 @@
                           IsEnabled="{Binding IsAnalysisInProgress, Converter={StaticResource oppositeConv}}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border> 
+                            <Border x:Name="itemBorder" 
+                                    Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"> 
                                 <TextBlock Text="{Binding Name}" Height="25" FontSize="14"/>
                             </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsProcessed}" Value="True">
+                                    <Setter TargetName="itemBorder" Property="Background" 
+                                            Value="Transparent"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
