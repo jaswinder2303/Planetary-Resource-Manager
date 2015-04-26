@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.Events
 {
-    delegate void AnalysisProgressChanged(int progress);
-
     class ProgressManager
     {
         static internal event AnalysisProgressChanged OnProgressChanged;

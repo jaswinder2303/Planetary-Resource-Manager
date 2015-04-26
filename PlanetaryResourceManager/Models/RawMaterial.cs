@@ -8,6 +8,11 @@ namespace PlanetaryResourceManager.Models
 {
     public class RawMaterial : Commodity
     {
+        public RawMaterial()
+        {
+            IsRawMaterial = true;
+        }
+
         public double ImportCost { get; set; }
     }
 }

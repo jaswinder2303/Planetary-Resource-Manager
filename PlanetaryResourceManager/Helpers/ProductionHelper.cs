@@ -60,9 +60,9 @@ namespace PlanetaryResourceManager.Helpers
             switch (productionLevel)
             {
                 case 2:
-                    return 0.38;
+                    return 0.20;
                 case 3:
-                    return 30;
+                    return 16;
                 default:
                     return 0;
             }
@@ -73,11 +73,11 @@ namespace PlanetaryResourceManager.Helpers
             switch (productionLevel)
             {
                 case 2:
-                    return 60;
+                    return 32;
                 case 3:
-                    return 1080;
+                    return 576;
                 default:
-                    return 0.75;
+                    return 0.40;
             }
         }
     }

@@ -137,26 +137,28 @@ namespace PlanetaryResourceManager.ViewModels
                         Duration = MarketDataHelper.Freshness
                     };
 
-                    var response = helper.GetData(request);
-                    var order = response.HighestBuyOrder;
+                    var productData = helper.GetData(request);
+                    var order = productData.HighestBuyOrder;
                     item.Product.Price = order != null ? order.Price : 0.0;
                     item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
                     item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
                     item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
+                    item.Product.Data = productData;
 
                     foreach (var input in item.Materials)
                     {
                         request = new MarketDataRequest
                         {
                             TypeId = input.ItemId.ToString(),
-                            Duration = MarketDataHelper.Freshness
-                            //MinimumQuantity = MinimumOrder
+                            Duration = MarketDataHelper.Freshness,
+                            SystemId = MarketDataHelper.Jita
                         };
 
-                        response = helper.GetData(request);
-                        order = response.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
+                        var materialData = helper.GetData(request);
+                        order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
                         input.Price = order != null ? order.Price : 0.0;
                         input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
+                        input.Data = materialData;
                     }
 
                     var productionResult = ProductionHelper.Calculate(item.Product, item.Materials);

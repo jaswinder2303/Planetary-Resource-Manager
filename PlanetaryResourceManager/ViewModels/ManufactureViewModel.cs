@@ -1,6 +1,7 @@
 ﻿using PlanetaryResourceManager.Commands;
 using PlanetaryResourceManager.Helpers;
 using PlanetaryResourceManager.Models;
+using PlanetaryResourceManager.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace PlanetaryResourceManager.ViewModels
         public double Expenses { get; set; }
         public double ProfitMargin { get; set; }
         public ICommand CalculateCommand { get; set; }
-
+        public ICommand ListOrdersCommand { get; set; }
 
         public ManufactureViewModel() : this(null)
         {
@@ -66,10 +67,32 @@ namespace PlanetaryResourceManager.ViewModels
             InputA = item.Materials[0];
             InputB = item.Materials[1];
             BatchSize = ProductionHelper.BatchSize;
+            ListOrdersCommand = new DelegateCommand(ListOrders);
             CalculateCommand = new DelegateCommand(Calculate);
             Calculate(null);
         }
 
+        private void ListOrders(object arg)
+        {
+            Commodity commodity = arg as Commodity;
+
+            if (commodity != null)
+            {
+                var ordersList = new List<TradeItem>
+                {
+                    new TradeItem(){
+                        Name = commodity.Name,
+                        Data = commodity.Data
+                    }
+                };
+
+                var viewModel = new TradeReportViewModel(ordersList);
+                viewModel.CurrentItem = viewModel.Commodities.First();
+                var dialog = new TradingReportWindow();
+                dialog.DataContext = viewModel;
+                dialog.ShowDialog();
+            }
+        }
 
         private void Calculate(object arg)
         {

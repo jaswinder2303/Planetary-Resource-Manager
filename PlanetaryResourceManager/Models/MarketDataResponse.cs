@@ -61,7 +61,7 @@ namespace PlanetaryResourceManager.Models
         {
             get
             {
-                return BuyOrders.Where(arg => arg.Security > SecurityLevel).Take(25).ToList();
+                return BuyOrders.Where(arg => arg.Security > SecurityLevel).Take(50).ToList();
             }
         }
 
@@ -69,7 +69,7 @@ namespace PlanetaryResourceManager.Models
         {
             get
             {
-                return SellOrders.Where(arg => arg.Security > SecurityLevel).Take(25).ToList();
+                return SellOrders.Where(arg => arg.Security > SecurityLevel).Take(50).ToList();
             }
         }
     }

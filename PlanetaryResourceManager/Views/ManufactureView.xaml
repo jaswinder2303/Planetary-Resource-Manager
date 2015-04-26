@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PlanetaryResourceManager.Views"
         xmlns:converter="clr-namespace:PlanetaryResourceManager.Converters"
+        xmlns:behaviour="clr-namespace:PlanetaryResourceManager.Behaviours"
         Title="Manufacture Product" Height="500" Width="600" WindowStartupLocation="CenterScreen" 
         Icon="/PlanetaryResourceManager;component/Images/Titch-Ix-Game-EVE.ico">
     <Window.Resources>
@@ -15,11 +16,17 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="5">
             <Label Content="Target Product"/>
-            <local:CommodityControl DataContext="{Binding TargetProduct}"/>
+            <local:CommodityControl DataContext="{Binding TargetProduct}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.TargetProduct}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersClicked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.ListOrdersCommand}"/>
             <Label Content="Input A"/>
-            <local:CommodityControl DataContext="{Binding InputA}"/>
+            <local:CommodityControl DataContext="{Binding InputA}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.InputA}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersClicked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.ListOrdersCommand}"/>
             <Label Content="Input B"/>
-            <local:CommodityControl DataContext="{Binding InputB}"/>
+            <local:CommodityControl DataContext="{Binding InputB}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.InputB}"
+                                    behaviour:CommodityOrdersBehaviour.ListOrdersClicked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ManufactureView}}, Path=DataContext.ListOrdersCommand}"/>
         </StackPanel>
         <Grid Grid.Column="1" ShowGridLines="False">
             <Grid.ColumnDefinitions>

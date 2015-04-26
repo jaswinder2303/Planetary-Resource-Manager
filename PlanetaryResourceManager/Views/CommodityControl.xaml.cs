@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlanetaryResourceManager.Data;
+using PlanetaryResourceManager.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,19 @@ namespace PlanetaryResourceManager.Views
     /// </summary>
     public partial class CommodityControl : UserControl
     {
+        internal event ListOrderRequested OnListOrderRequested;
+
         public CommodityControl()
         {
             InitializeComponent();
+        }
+
+        private void ListOrdersClicked(object sender, RoutedEventArgs e)
+        {
+            if (OnListOrderRequested != null)
+            {
+                OnListOrderRequested(this);
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ namespace PlanetaryResourceManager.Models
         public string Name { get; set; }
         public double Price { get; set; }
         public int ItemId { get; set; }
+        public bool IsRawMaterial { get; set; }
+        internal MarketDataResponse Data { get; set; }
 
         public override string ToString()
         {
