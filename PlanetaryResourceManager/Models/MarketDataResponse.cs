@@ -72,5 +72,11 @@ namespace PlanetaryResourceManager.Models
                 return SellOrders.Where(arg => arg.Security > SecurityLevel).Take(50).ToList();
             }
         }
+
+        internal static void ResequenceOrders(MarketDataResponse data)
+        {
+            data.SellOrders = data.SellOrders.OrderBy(arg => arg.Price).ToList();
+            data.BuyOrders = data.BuyOrders.OrderByDescending(arg => arg.Price).ToList();
+        }
     }
 }

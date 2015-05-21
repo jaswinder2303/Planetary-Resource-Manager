@@ -32,8 +32,7 @@ namespace PlanetaryResourceManager.Models
             if (Data != null)
             {
                 Data.SecurityLevel = securityLevel;
-                Data.SellOrders = Data.SellOrders.OrderBy(arg => arg.Price).ToList();
-                Data.BuyOrders = Data.BuyOrders.OrderByDescending(arg => arg.Price).ToList();
+                MarketDataResponse.ResequenceOrders(Data);
             }
         }
     }

@@ -138,6 +138,7 @@ namespace PlanetaryResourceManager.ViewModels
                     };
 
                     var productData = helper.GetData(request);
+                    MarketDataResponse.ResequenceOrders(productData);
                     var order = productData.HighestBuyOrder;
                     item.Product.Price = order != null ? order.Price : 0.0;
                     item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
