@@ -1,0 +1,6 @@
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\bin\Debug\LogUtilitySettings.xml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\bin\Debug\LoggingUtility.dll
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\bin\Debug\LoggingUtility.pdb
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\obj\Debug\LoggingUtility.csprojResolveAssemblyReference.cache
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\obj\Debug\LoggingUtility.dll
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\LoggingUtility\obj\Debug\LoggingUtility.pdb

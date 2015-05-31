@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--All changes to log settings will take effect after restarting the application that uses it-->
+<LoggingSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                 xmlns="http://www.folatech.com">
+  
+  <!--The logging mode controls when messages are written to file
+  Implicit: Messages will be written to file as soon as they are raised
+  Explicit: Messages are written when the application demands it.
+  The explicit mode will result in a sorted and neatly formatted log file-->
+  <LoggingMode>Implicit</LoggingMode>
+  <!--The logging level controls what types of messages will be written to the log file
+  All: all messages are written to the log file. This will include unclassified messages
+  WarningsAndErrors: only warning, error and exception messages will be written to the log file
+  ErrorsOnly: only error and exception messages will be written to the log file
+  None: no messages will be written to the log file-->
+  <LoggingLevel>ErrorsOnly</LoggingLevel>
+  
+</LoggingSettings>
