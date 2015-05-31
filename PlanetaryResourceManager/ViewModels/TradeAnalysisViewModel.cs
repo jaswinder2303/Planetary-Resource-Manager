@@ -1,4 +1,5 @@
-﻿using PlanetaryResourceManager.Commands;
+﻿using LoggingUtility;
+using PlanetaryResourceManager.Commands;
 using PlanetaryResourceManager.Data;
 using PlanetaryResourceManager.Events;
 using PlanetaryResourceManager.Helpers;
@@ -10,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -44,6 +46,7 @@ namespace PlanetaryResourceManager.ViewModels
             StartAllCommand = new DelegateCommand(StartAll);
         }
 
+        private LogUtility Logger { get; set; }
         public ICommand AnalyzeCommand { get; set; }
         public ICommand StartAllCommand { get; set; }
         public ICommand ShowDetails { get; set; }
@@ -109,6 +112,7 @@ namespace PlanetaryResourceManager.ViewModels
         {
             CurrentProgress = 0;
             IsAnalysisInProgress = true;
+            Logger = LogUtility.CreateLogger("PlanetaryResourceManager", null, null, LogLevel.All, LogMode.Explicit);
 
             var progress = new Progress<int>(percent =>
             {
@@ -122,13 +126,20 @@ namespace PlanetaryResourceManager.ViewModels
                 }
             });
 
-            await Task.Run(() => AnalyzeAll(progress));
+            Logger.AddTimedTrace("Staring All Trade analysis");
+
+            await Task.Factory.StartNew(() => AnalyzeAll(progress)).ContinueWith((task) =>
+            {
+                Logger.AddTimedTrace("Completed All Trade analysis");
+                Logger.WriteMessagesToFile();
+            });
         }
 
         private async void Analyze(object obj)
         {
             CurrentProgress = 0;
             IsAnalysisInProgress = true;
+            Logger = LogUtility.CreateLogger("PlanetaryResourceManager", null, null, LogLevel.All, LogMode.Explicit);
 
             var progress = new Progress<int>(percent =>
             {
@@ -142,7 +153,13 @@ namespace PlanetaryResourceManager.ViewModels
                 }
             });
 
-            await Task.Run(() => Analyze(progress));
+            Logger.AddTimedTrace("Staring Trade analysis");
+
+            await Task.Factory.StartNew(() => Analyze(progress)).ContinueWith((task) =>
+            {
+                Logger.AddTimedTrace("Completed Trade analysis");
+                Logger.WriteMessagesToFile();
+            });
         }
 
         private void ShowMarketDetails(object arg)
@@ -160,64 +177,113 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void Analyze(IProgress<int> progress)
         {
-            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
-            {
-                int index = 0;
+            int index = 0;
+            var categoryTasks = new List<Task>();
 
-                foreach (var group in _currentCategory.Groups)
+            foreach (var group in _currentCategory.Groups)
+            {
+                categoryTasks.Add(Task.Factory.StartNew(() =>
                 {
+                    var groupTasks = new List<Task>();
+
                     foreach (var item in group.Items)
                     {
-                        MarketDataRequest request = new MarketDataRequest
-                        {
-                            TypeId = item.Id.ToString(),
-                            Duration = MarketDataHelper.Freshness
-                        };
+                        groupTasks.Add(Task.Factory.StartNew(() => {
+                            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
+                            {
+                                MarketDataRequest request = new MarketDataRequest
+                                {
+                                    TypeId = item.Id.ToString(),
+                                    Duration = MarketDataHelper.Freshness
+                                };
 
-                        item.Data = helper.GetData(request);
+                                item.Data = helper.GetData(request);
+                            }
+                        }, TaskCreationOptions.AttachedToParent));
                     }
 
-                    group.Update(_securityLevels[CurrentSecurityLevel]);
-                    var currentProgress = ((double)++index / _currentCategory.Groups.Count) * 100;
-                    progress.Report((int)currentProgress);
-                }
+                    Task.Factory.ContinueWhenAll(groupTasks.ToArray(), groupedTasks => {
+                        group.Update(_securityLevels[CurrentSecurityLevel]);
+                        var currentProgress = ((double)++index / _currentCategory.Groups.Count) * 100;
+                        progress.Report((int)currentProgress);
+                    });
 
+                }, TaskCreationOptions.AttachedToParent));
+            }
+
+            Task.Factory.ContinueWhenAll(categoryTasks.ToArray(), categorizedTasks => {
                 IsAnalysisInProgress = false;
                 _currentCategory.IsProcessed = true;
-            }
+            }); 
         }
 
         private void AnalyzeAll(IProgress<int> progress)
         {
-            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
-            {
-                int index = 0;
+            int index = 0;
+            var tradeTasks = new List<Task>();
 
-                foreach (var category in _categories)
+            foreach (var category in _categories)
+            {
+                tradeTasks.Add(Task.Factory.StartNew(() =>
                 {
+                    var categoryTasks = new List<Task>();
+
                     foreach (var group in category.Groups)
                     {
-                        foreach (var item in group.Items)
+                        categoryTasks.Add(Task.Factory.StartNew(() =>
                         {
-                            MarketDataRequest request = new MarketDataRequest
+                            var groupTasks = new List<Task>();
+
+                            foreach (var item in group.Items)
                             {
-                                TypeId = item.Id.ToString(),
-                                Duration = MarketDataHelper.Freshness
-                            };
+                                groupTasks.Add(Task.Factory.StartNew(() =>
+                                {
+                                    using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
+                                    {
+                                        MarketDataRequest request = new MarketDataRequest
+                                        {
+                                            TypeId = item.Id.ToString(),
+                                            Duration = MarketDataHelper.Freshness
+                                        };
 
-                            item.Data = helper.GetData(request);
-                        }
+                                        item.Data = helper.GetData(request);
+                                    }
+                                }, TaskCreationOptions.AttachedToParent));
+                            }
 
-                        group.Update(_securityLevels[CurrentSecurityLevel]);
+                            if (groupTasks.Any())
+                            {
+                                Task.Factory.ContinueWhenAll(groupTasks.ToArray(), groupedTasks =>
+                                {
+                                    group.Update(_securityLevels[CurrentSecurityLevel]);
+                                });
+                            }
+
+                        }, TaskCreationOptions.AttachedToParent));
                     }
 
-                    category.IsProcessed = true;
-                    var currentProgress = ((double)++index / _categories.Count) * 100;
-                    progress.Report((int)currentProgress);
-                }
+                    if (categoryTasks.Any())
+                    {
+                        Task.Factory.ContinueWhenAll(categoryTasks.ToArray(), categorizedTasks =>
+                        {
+                            category.IsProcessed = true;
+                            var currentProgress = ((double)++index / _categories.Count) * 100;
+                            progress.Report((int)currentProgress);
+                        });
+                    }
+                    else
+                    {
+                        category.IsProcessed = true;
+                        var currentProgress = ((double)++index / _categories.Count) * 100;
+                        progress.Report((int)currentProgress);
+                    }
 
-                IsAnalysisInProgress = false;
+                }, TaskCreationOptions.AttachedToParent));
             }
+
+            Task.Factory.ContinueWhenAll(tradeTasks.ToArray(), tradingTasks => {
+                IsAnalysisInProgress = false;
+            });  
         }
     }
 }

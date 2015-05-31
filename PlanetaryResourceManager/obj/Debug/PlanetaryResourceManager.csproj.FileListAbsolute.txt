@@ -15,11 +15,11 @@ C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryR
 C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.exe
 C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.pdb
 C:\Home\Planetary Resource Manager\PlanetaryResourceManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe.config
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.dll
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe.config
-C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.xml
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\Views\CommodityControl.g.cs
@@ -43,4 +43,9 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csproj.GenerateResource.Cache
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.exe
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.pdb
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\LogUtilitySettings.xml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\LoggingUtility.dll
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\LoggingUtility.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csprojResolveAssemblyReference.cache
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe.CodeAnalysisLog.xml
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\PlanetaryResourceManager.exe.lastcodeanalysissucceeded

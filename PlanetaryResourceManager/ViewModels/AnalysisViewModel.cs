@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System;
 using PlanetaryResourceManager.Views;
 using PlanetaryResourceManager.Events;
+using LoggingUtility;
+using System.Threading;
 
 namespace PlanetaryResourceManager.ViewModels
 {
@@ -44,6 +46,7 @@ namespace PlanetaryResourceManager.ViewModels
             LoadProductionItems(null);
         }
 
+        private LogUtility Logger { get; set; }
         public ObservableCollection<AnalysisItem> AnalysisItems { get; set; }
         public ObservableCollection<string> ProductionLevels { get; set; }
         public string CurrentProductionLevel { get; set; }
@@ -106,6 +109,7 @@ namespace PlanetaryResourceManager.ViewModels
         {
             CurrentProgress = 0;
             AnalysisInProgress = true;
+            Logger = LogUtility.CreateLogger("PlanetaryResourceManager", null, null, LogLevel.All, LogMode.Explicit);
 
             var progress = new Progress<int>(percent =>
             {
@@ -119,61 +123,74 @@ namespace PlanetaryResourceManager.ViewModels
                 }
             });
 
-            await Task.Run(() => Analyze(progress));
+            Logger.AddTimedTrace("Staring PI analysis");
+
+            await Task.Factory.StartNew(() => Analyze(progress)).ContinueWith((task) =>
+            {
+                Logger.AddTimedTrace("Completed PI analysis");
+                Logger.WriteMessagesToFile();
+            });
         }
 
         private void Analyze(IProgress<int> progress)
         {
-            using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
+            int index = 0;
+            var itemTasks = new List<Task>();
+
+            foreach (var item in _analysisItems)
             {
-                int index = 0;
-
-                foreach (var item in _analysisItems)
+                itemTasks.Add(Task.Factory.StartNew(() => 
                 {
-                    MarketDataRequest request = new MarketDataRequest
+                    using (MarketDataHelper helper = new MarketDataHelper(MarketDataHelper.QuickLook))
                     {
-                        TypeId = item.Product.ItemId.ToString(),
-                        SystemId = MarketDataHelper.Jita,
-                        Duration = MarketDataHelper.Freshness
-                    };
-
-                    var productData = helper.GetData(request);
-                    MarketDataResponse.ResequenceOrders(productData);
-                    var order = productData.HighestBuyOrder;
-                    item.Product.Price = order != null ? order.Price : 0.0;
-                    item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
-                    item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
-                    item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
-                    item.Product.Data = productData;
-
-                    foreach (var input in item.Materials)
-                    {
-                        request = new MarketDataRequest
+                        MarketDataRequest request = new MarketDataRequest
                         {
-                            TypeId = input.ItemId.ToString(),
-                            Duration = MarketDataHelper.Freshness,
-                            SystemId = MarketDataHelper.Jita
+                            TypeId = item.Product.ItemId.ToString(),
+                            SystemId = MarketDataHelper.Jita,
+                            Duration = MarketDataHelper.Freshness
                         };
 
-                        var materialData = helper.GetData(request);
-                        order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
-                        input.Price = order != null ? order.Price : 0.0;
-                        input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
-                        input.Data = materialData;
+                        var productData = helper.GetData(request);
+                        MarketDataResponse.ResequenceOrders(productData);
+                        var order = productData.HighestBuyOrder;
+                        item.Product.Price = order != null ? order.Price : 0.0;
+                        item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
+                        item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
+                        item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
+                        item.Product.Data = productData;
+
+                        foreach (var input in item.Materials)
+                        {
+                            request = new MarketDataRequest
+                            {
+                                TypeId = input.ItemId.ToString(),
+                                Duration = MarketDataHelper.Freshness,
+                                SystemId = MarketDataHelper.Jita
+                            };
+
+                            var materialData = helper.GetData(request);
+                            MarketDataResponse.ResequenceOrders(materialData);
+                            order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
+                            input.Price = order != null ? order.Price : 0.0;
+                            input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
+                            input.Data = materialData;
+                        }
+
+                        var productionResult = ProductionHelper.Calculate(item.Product, item.Materials);
+                        item.ProductionCost = productionResult.PurchaseCost;
+                        item.SaleValue = productionResult.SaleCost;
+                        item.ProfitMargin = productionResult.ProfitMargin;
+                        item.UpdateProperties();
+
+                        var currentProgress = ((double)++index / _analysisItems.Count) * 100;
+                        progress.Report((int)currentProgress);
                     }
-
-                    var productionResult = ProductionHelper.Calculate(item.Product, item.Materials);
-                    item.ProductionCost = productionResult.PurchaseCost;
-                    item.SaleValue = productionResult.SaleCost;
-                    item.ProfitMargin = productionResult.ProfitMargin;
-                    item.UpdateProperties();
-
-                    var currentProgress = ((double)++index / _analysisItems.Count) * 100;
-                    progress.Report((int)currentProgress);
-                }
-
-                AnalysisInProgress = false;
+                }, TaskCreationOptions.AttachedToParent));
             }
+
+            Task.Factory.ContinueWhenAll(itemTasks.ToArray(), groupedTasks => {
+                AnalysisInProgress = false;
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
