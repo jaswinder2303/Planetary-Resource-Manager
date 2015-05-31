@@ -12,5 +12,10 @@ namespace PlanetaryResourceManager.Models
         public string Duration { get; set; }
         public string SystemId { get; set; }
         public string MinimumQuantity { get; set; }
+
+        public override string ToString()
+        {
+            return TypeId;
+        }
     }
 }

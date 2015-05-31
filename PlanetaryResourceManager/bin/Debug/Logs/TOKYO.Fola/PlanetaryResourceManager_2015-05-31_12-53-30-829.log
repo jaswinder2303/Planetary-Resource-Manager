@@ -1,0 +1,19 @@
+Log Messages
+Product  : PlanetaryResourceManager
+Timestamp: 2015-05-31 12:53:30
+
+Trace Messages  [Count = 11]
+============================
+[Trace]  : [31/05/2015 12:53:30][Trace]   Processing item: 2317 on thread 17
+[Trace]  : [31/05/2015 12:53:30][Trace]   Processing item: 44 on thread 6
+[Trace]  : [31/05/2015 12:53:30][Trace]   Processing item: 2321 on thread 22
+[Trace]  : [31/05/2015 12:53:30][Trace]   Duration=[00:00:00.0010000] Processing item: 2319 on thread 14
+[Trace]  : [31/05/2015 12:53:30][Trace]   Duration=[00:00:00.0010000] Processing item: 2312 on thread 15
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:02.0621180] Processing item: 2329 on thread 16
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:02.0621180] Processing item: 2327 on thread 18
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:00] Processing item: 3689 on thread 20
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:00] Processing item: 3691 on thread 21
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:00.0010000] Processing item: 2463 on thread 23
+[Trace]  : [31/05/2015 12:53:32][Trace]   Duration=[00:00:00] Processing item: 2328 on thread 19
+
+

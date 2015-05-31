@@ -1,0 +1,76 @@
+Log Messages
+Product  : PlanetaryResourceManager
+Timestamp: 2015-05-31 13:38:02
+
+Trace Messages  [Count = 68]
+============================
+[Trace]  : [31/05/2015 13:38:03][Trace]   Processed item: 2328 on thread 22
+[Trace]  : [31/05/2015 13:38:03][Trace]   Duration=[00:00:00.3320190] Processed item: 2319 on thread 18
+[Trace]  : [31/05/2015 13:38:03][Trace]   Duration=[00:00:00.0210012] Processed item: 2327 on thread 19
+[Trace]  : [31/05/2015 13:38:04][Trace]   Duration=[00:00:00.6820390] Processed item: 2317 on thread 13
+[Trace]  : [31/05/2015 13:38:04][Trace]   Duration=[00:00:00.1920110] Processed item: 2463 on thread 21
+[Trace]  : [31/05/2015 13:38:05][Trace]   Duration=[00:00:00.5700326] Processed item: 44 on thread 14
+[Trace]  : [31/05/2015 13:38:05][Trace]   Duration=[00:00:00.2430139] Processed item: 2329 on thread 23
+[Trace]  : [31/05/2015 13:38:05][Trace]   Duration=[00:00:00.4830276] Processed item: 3689 on thread 17
+[Trace]  : [31/05/2015 13:38:05][Trace]   Duration=[00:00:00.1130065] Processed item: 2312 on thread 12
+[Trace]  : [31/05/2015 13:38:05][Trace]   Duration=[00:00:00.0210012] Processed item: 2321 on thread 16
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.1420081] Processed item: 3725 on thread 19
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.1910110] Processed item: 3828 on thread 13
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.1000057] Processed item: 9828 on thread 15
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.2860163] Processed item: 9832 on thread 14
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.2170124] Processed item: 3691 on thread 20
+[Trace]  : [31/05/2015 13:38:06][Trace]   Duration=[00:00:00.0880051] Processed item: 9836 on thread 23
+[Trace]  : [31/05/2015 13:38:07][Trace]   Duration=[00:00:00.1030059] Processed item: 3693 on thread 25
+[Trace]  : [31/05/2015 13:38:07][Trace]   Duration=[00:00:00.3420195] Processed item: 3695 on thread 22
+[Trace]  : [31/05/2015 13:38:07][Trace]   Duration=[00:00:00.0010001] Processed item: 3697 on thread 18
+[Trace]  : [31/05/2015 13:38:07][Trace]   Duration=[00:00:00.1890108] Processed item: 3775 on thread 26
+[Trace]  : [31/05/2015 13:38:07][Trace]   Duration=[00:00:00.1960112] Processed item: 9838 on thread 17
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.3120179] Processed item: 9830 on thread 21
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.0030001] Processed item: 3779 on thread 15
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.2050118] Processed item: 9840 on thread 12
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.1380078] Processed item: 2346 on thread 20
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.1750101] Processed item: 2349 on thread 25
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.0370021] Processed item: 9842 on thread 16
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.1330076] Processed item: 2351 on thread 22
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.0200011] Processed item: 15317 on thread 19
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.0180011] Processed item: 2344 on thread 13
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.1370078] Processed item: 2352 on thread 18
+[Trace]  : [31/05/2015 13:38:08][Trace]   Duration=[00:00:00.0110006] Processed item: 2345 on thread 14
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.1370079] Processed item: 2354 on thread 26
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0060003] Processed item: 2348 on thread 23
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0160009] Processed item: 2360 on thread 21
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0290017] Processed item: 2358 on thread 17
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0230013] Processed item: 2361 on thread 12
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.1810103] Processed item: 9834 on thread 16
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.5100292] Processed item: 9848 on thread 19
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0040002] Processed item: 12836 on thread 13
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.1350078] Processed item: 3683 on thread 15
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0110006] Processed item: 17392 on thread 14
+[Trace]  : [31/05/2015 13:38:09][Trace]   Duration=[00:00:00.0210012] Processed item: 17898 on thread 26
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.1120064] Processed item: 2366 on thread 20
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.0210012] Processed item: 2367 on thread 25
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.0480027] Processed item: 2868 on thread 17
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.0010001] Processed item: 2869 on thread 12
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.1040060] Processed item: 9846 on thread 22
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.0390022] Processed item: 17136 on thread 18
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.1370078] Processed item: 28974 on thread 23
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.1760101] Processed item: 2870 on thread 16
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.0130007] Processed item: 2867 on thread 21
+[Trace]  : [31/05/2015 13:38:10][Trace]   Duration=[00:00:00.1610092] Processed item: 2871 on thread 19
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.2010115] Processed item: 2872 on thread 13
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.1830105] Processed item: 2875 on thread 14
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.1680096] Processed item: 3645 on thread 15
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.1650095] Processed item: 2876 on thread 26
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.2630150] Processed item: 2389 on thread 20
+[Trace]  : [31/05/2015 13:38:11][Trace]   Duration=[00:00:00.0800046] Processed item: 2392 on thread 17
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.2020115] Processed item: 2393 on thread 12
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.1250072] Processed item: 2390 on thread 25
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.1660095] Processed item: 2395 on thread 22
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.3330190] Processed item: 2396 on thread 18
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.1880108] Processed item: 2397 on thread 23
+[Trace]  : [31/05/2015 13:38:12][Trace]   Duration=[00:00:00.0080004] Processed item: 2398 on thread 16
+[Trace]  : [31/05/2015 13:38:13][Trace]   Duration=[00:00:00.3380194] Processed item: 2399 on thread 21
+[Trace]  : [31/05/2015 13:38:14][Trace]   Duration=[00:00:01.0130579] Processed item: 2400 on thread 19
+[Trace]  : [31/05/2015 13:38:15][Trace]   Duration=[00:00:00.8470485] Processed item: 2401 on thread 13
+
+

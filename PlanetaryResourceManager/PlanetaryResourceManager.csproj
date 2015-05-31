@@ -253,6 +253,12 @@
     <Resource Include="Images\eve-online-icon.png" />
     <Resource Include="Images\Titch-Ix-Game-EVE.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoggingUtility\LoggingUtility.csproj">
+      <Project>{01f07d43-d5f7-4e89-8f2a-c94e33421a79}</Project>
+      <Name>LoggingUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
