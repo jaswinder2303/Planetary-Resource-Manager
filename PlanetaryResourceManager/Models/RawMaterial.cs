@@ -14,5 +14,7 @@ namespace PlanetaryResourceManager.Models
         }
 
         public double ImportCost { get; set; }
+        public int InputLevel { get; set; }
+        public int InputBatchSize { get; set; }
     }
 }

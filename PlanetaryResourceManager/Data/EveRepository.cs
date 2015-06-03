@@ -29,10 +29,12 @@ namespace PlanetaryResourceManager.Data
                 Materials = item.Inputs.Select(input => new RawMaterial
                 {
                     Name = input.Name,
-                    ItemId = input.ItemId
+                    ItemId = input.ItemId,
+                    InputLevel = input.ProductionLevel
                 }).ToList()
             }).ToList();
 
+            //if the item is a raw material or a single input product
             foreach (var item in items)
             {
                 while (item.Materials.Count < 2)

@@ -33,7 +33,9 @@ namespace PlanetaryResourceManager.ViewModels
             _productionLevels = new Dictionary<string, int>{
                 {"Raw Materials", 1},
                 {"Processed Materials", 2},
-                {"Refined Materials", 3}
+                {"Refined Materials", 3},
+                {"Specialized Materials", 4},
+                {"Advanced Materials", 5}
             };
 
             ProductionLevels = new ObservableCollection<string>(_productionLevels.Keys);
@@ -155,7 +157,6 @@ namespace PlanetaryResourceManager.ViewModels
                         var order = productData.HighestBuyOrder;
                         item.Product.Price = order != null ? order.Price : 0.0;
                         item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
-                        item.Product.InputBatchSize = ProductionHelper.GetInputBatchSize(_productionLevel);
                         item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
                         item.Product.Data = productData;
 
@@ -170,9 +171,11 @@ namespace PlanetaryResourceManager.ViewModels
 
                             var materialData = helper.GetData(request);
                             MarketDataResponse.ResequenceOrders(materialData);
-                            order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
+                            //order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
+                            order = materialData.LowestSellOrder(null);
                             input.Price = order != null ? order.Price : 0.0;
-                            input.ImportCost = ProductionHelper.GetImportCost(_productionLevel);
+                            input.ImportCost = ProductionHelper.GetImportCost(input.InputLevel);
+                            input.InputBatchSize = ProductionHelper.GetInputBatchSize(input.InputLevel);
                             input.Data = materialData;
                         }
 

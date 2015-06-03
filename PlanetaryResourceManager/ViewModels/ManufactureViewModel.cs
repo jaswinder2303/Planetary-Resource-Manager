@@ -17,8 +17,10 @@ namespace PlanetaryResourceManager.ViewModels
         public Product TargetProduct { get; set; }
         public RawMaterial InputA { get; set; }
         public RawMaterial InputB { get; set; }
+        public RawMaterial InputC { get; set; }
+        public bool RequiresThirdInput { get; set; }
         public int BatchSize { get; set; }
-        public int InputQuantity { get; set; }
+        public string InputQuantity { get; set; }
         public int OutputQuantity { get; set; }
         public double PurchaseCost { get; set; }
         public double SaleCost { get; set; }
@@ -42,7 +44,6 @@ namespace PlanetaryResourceManager.ViewModels
                     {
                         Name = "Microfiber Sheilding",
                         Price = 11800.00,
-                        InputBatchSize = 40,
                         OutputBatchSize = 5,
                         ExportCost = 1224
                     },
@@ -51,12 +52,14 @@ namespace PlanetaryResourceManager.ViewModels
                         {
                             Name = "Silicon",
                             Price = 600,
+                            InputBatchSize = 40,
                             ImportCost = 34
                         },
                         new RawMaterial
                         {
                             Name = "Industrial Fiber",
                             Price = 500,
+                            InputBatchSize = 40,
                             ImportCost = 34
                         }
                     }
@@ -66,6 +69,13 @@ namespace PlanetaryResourceManager.ViewModels
             TargetProduct = item.Product;
             InputA = item.Materials[0];
             InputB = item.Materials[1];
+
+            if (item.Materials.Count == 3)
+            {
+                InputC = item.Materials[2];
+                RequiresThirdInput = true;
+            }
+
             BatchSize = ProductionHelper.BatchSize;
             ListOrdersCommand = new DelegateCommand(ListOrders);
             CalculateCommand = new DelegateCommand(Calculate);
@@ -96,7 +106,13 @@ namespace PlanetaryResourceManager.ViewModels
 
         private void Calculate(object arg)
         {
-            var result = ProductionHelper.Calculate(TargetProduct, new List<RawMaterial> { InputA, InputB }, BatchSize);
+            var materials = new List<RawMaterial> { InputA, InputB };
+            if (InputC != null)
+            {
+                materials.Add(InputC);
+            }
+
+            var result = ProductionHelper.Calculate(TargetProduct, materials, BatchSize);
             InputQuantity = result.InputQuantity;
             OutputQuantity = result.OutputQuantity;
             SaleCost = result.SaleCost;
@@ -110,6 +126,7 @@ namespace PlanetaryResourceManager.ViewModels
             RaisePropertyChanged("PurchaseCost");
             RaisePropertyChanged("Expenses");
             RaisePropertyChanged("ProfitMargin");
+            RaisePropertyChanged("RequiresThirdInput");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

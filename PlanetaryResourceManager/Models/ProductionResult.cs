@@ -8,11 +8,12 @@ namespace PlanetaryResourceManager.Models
 {
     class ProductionResult
     {
-        public int InputQuantity { get; set; }
+        public string InputQuantity { get; set; }
         public int OutputQuantity { get; set; }
         public double PurchaseCost { get; set; }
         public double SaleCost { get; set; }
         public double Expenses { get; set; }
         public double ProfitMargin { get; set; }
+        public Dictionary<int, int> InputQuantities { get; set; }
     }
 }
