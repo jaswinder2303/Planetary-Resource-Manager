@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager", "PlanetaryResourceManager\PlanetaryResourceManager.csproj", "{1893F040-26FE-4F39-9856-F7B420147CE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingUtility", "LoggingUtility\LoggingUtility.csproj", "{01F07D43-D5F7-4E89-8F2A-C94E33421A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTerminal", "WebTerminal\WebTerminal.csproj", "{83476E94-8AAB-453B-BE19-A01DBDA5844A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{01F07D43-D5F7-4E89-8F2A-C94E33421A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F07D43-D5F7-4E89-8F2A-C94E33421A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F07D43-D5F7-4E89-8F2A-C94E33421A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83476E94-8AAB-453B-BE19-A01DBDA5844A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83476E94-8AAB-453B-BE19-A01DBDA5844A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83476E94-8AAB-453B-BE19-A01DBDA5844A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83476E94-8AAB-453B-BE19-A01DBDA5844A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
