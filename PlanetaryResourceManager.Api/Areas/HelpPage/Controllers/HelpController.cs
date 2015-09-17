@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using WebTerminal.Areas.HelpPage.ModelDescriptions;
 using WebTerminal.Areas.HelpPage.Models;
 
-namespace WebTerminal.Areas.HelpPage.Controllers
+namespace PlanetaryResourceManager.Api.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebTerminal
+namespace PlanetaryResourceManager.Api
 {
     public class BundleConfig
     {

@@ -3,7 +3,7 @@ using PlanetaryResourceManager.Core.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace WebTerminal.Controllers
+namespace PlanetaryResourceManager.Api.Controllers
 {
     public class ProductsController : ApiController
     {
