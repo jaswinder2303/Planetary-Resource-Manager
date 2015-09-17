@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\site.css" />
+    <Content Include="Content\ui-bootstrap-0.13.4-csp.css" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -77,15 +79,18 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="main.html" />
-    <Content Include="Scripts\apiService.js" />
-    <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\ProductsController.js" />
+    <Content Include="Scripts\Custom\apiService.js" />
+    <Content Include="Scripts\Custom\app.js" />
+    <Content Include="Scripts\Custom\ProductsController.js" />
+    <Content Include="Scripts\Angular\ui-bootstrap-0.13.4.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\Bootstrap\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
