@@ -5,6 +5,7 @@ using System.Web.Http;
 
 namespace PlanetaryResourceManager.Api.Controllers
 {
+
     public class ProductsController : ApiController
     {
         public IEnumerable<AnalysisItem> Get()

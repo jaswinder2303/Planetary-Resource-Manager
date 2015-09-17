@@ -1,8 +1,8 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using WebTerminal.Areas.HelpPage.ModelDescriptions;
-using WebTerminal.Areas.HelpPage.Models;
+using PlanetaryResourceManager.Api.Areas.HelpPage.ModelDescriptions;
+using PlanetaryResourceManager.Api.Areas.HelpPage.Models;
 
 namespace PlanetaryResourceManager.Api.Areas.HelpPage.Controllers
 {

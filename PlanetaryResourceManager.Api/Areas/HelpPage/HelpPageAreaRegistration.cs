@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace WebTerminal.Areas.HelpPage
+namespace PlanetaryResourceManager.Api.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

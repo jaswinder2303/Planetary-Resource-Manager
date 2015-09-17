@@ -1,6 +1,6 @@
 using System;
 
-namespace WebTerminal.Areas.HelpPage.ModelDescriptions
+namespace PlanetaryResourceManager.Api.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

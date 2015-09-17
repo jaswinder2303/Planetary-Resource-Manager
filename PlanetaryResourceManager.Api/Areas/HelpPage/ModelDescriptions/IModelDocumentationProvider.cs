@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace WebTerminal.Areas.HelpPage.ModelDescriptions
+namespace PlanetaryResourceManager.Api.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

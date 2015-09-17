@@ -1,4 +1,4 @@
-namespace WebTerminal.Areas.HelpPage.ModelDescriptions
+namespace PlanetaryResourceManager.Api.Areas.HelpPage.ModelDescriptions
 {
     public class EnumValueDescription
     {

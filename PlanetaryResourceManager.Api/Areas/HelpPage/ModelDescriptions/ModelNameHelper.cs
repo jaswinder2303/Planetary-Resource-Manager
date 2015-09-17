@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace WebTerminal.Areas.HelpPage.ModelDescriptions
+namespace PlanetaryResourceManager.Api.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {
