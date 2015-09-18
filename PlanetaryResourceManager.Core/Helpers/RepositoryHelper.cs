@@ -11,21 +11,21 @@ namespace PlanetaryResourceManager.Core.Helpers
     {
         private static Dictionary<string, int> _productionLevels;
         private static EveRepository _repository;
-        public static string RawMetrials = "Raw Metrials";
-        public static string ProcessedMetrials = "Processed Metrials";
-        public static string RefinedMetrials = "Refined Metrials";
-        public static string SpecializedMetrials = "Specialized Metrials";
-        public static string AdvancedMetrials = "Advanced Metrials";
+        public static string RawMaterials = "Raw Materials";
+        public static string ProcessedMaterials = "Processed Materials";
+        public static string RefinedMaterials = "Refined Materials";
+        public static string SpecializedMaterials = "Specialized Materials";
+        public static string AdvancedMaterials = "Advanced Materials";
 
         static RepositoryHelper()
         {
             _repository = new EveRepository();
             _productionLevels = new Dictionary<string, int>{
-                {RawMetrials, 1},
-                {ProcessedMetrials, 2},
-                {RefinedMetrials, 3},
-                {SpecializedMetrials, 4},
-                {AdvancedMetrials, 5}
+                {RawMaterials, 1},
+                {ProcessedMaterials, 2},
+                {RefinedMaterials, 3},
+                {SpecializedMaterials, 4},
+                {AdvancedMaterials, 5}
             };
         }
 

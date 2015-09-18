@@ -1,2 +1,10 @@
-﻿body {
+﻿.top-banner {
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+.main-display{
+    padding: 5px;
+    height: 600px;
+    overflow-y:auto;
 }
