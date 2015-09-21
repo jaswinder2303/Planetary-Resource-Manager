@@ -1,0 +1,9 @@
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\PlanetaryResourceManager.Core.dll.config
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\PlanetaryResourceManager.Core.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\PlanetaryResourceManager.Core.pdb
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\EntityFramework.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\EntityFramework.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\obj\Debug\PlanetaryResourceManager.Core.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Core\obj\Debug\PlanetaryResourceManager.Core.pdb
