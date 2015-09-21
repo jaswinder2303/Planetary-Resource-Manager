@@ -1,0 +1,19 @@
+﻿<div>
+    <div ng-hide="error">
+        <div class="top-banner">
+        </div>
+        <div class="main-display container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-9" kendo-tree-view="tree" k-data-source="products">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="error">
+        {{error}}
+    </div>
+</div>

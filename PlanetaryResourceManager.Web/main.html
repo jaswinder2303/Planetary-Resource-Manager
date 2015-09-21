@@ -1,0 +1,40 @@
+﻿<div>
+    <div ng-hide="error">
+        <div class="top-banner">
+            <div class="btn-group " dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+                    {{currentLevel}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                    <li role="menuitem" ng-repeat="item in levels"><a ng-click="updateLevel(item.Name)">{{item.Name}}</a></li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-primary" ng-click="loadLevel()">Load</button>
+            <button type="button" class="btn btn-success" ng-click="startAnalysis">Start</button>
+        </div>
+        <div class="main-display">
+            <table class="table table-condensed table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Production Cost</th>
+                        <th>Sale Value</th>
+                        <th>Profit Margin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in products | orderBy: productSortOrder">
+                        <td>{{item.Product.Name}}</td>
+                        <td>{{item.ProductionCost | currency}}</td>
+                        <td>{{item.SaleValue | currency}}</td>
+                        <td>{{item.ProfitMargin | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="error">
+        {{error}}
+    </div>
+</div>

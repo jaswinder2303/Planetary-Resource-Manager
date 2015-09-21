@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module("evePiManager");
 
-    var ProductsController = function ($scope, apiService) {
+    var ProductsController = function ($scope, $location, apiService) {
 
         var onProductLoad = function (data) {
             $scope.products = data;
@@ -30,11 +30,11 @@
         }
 
         var startAnalysis = function () {
-
+            $location.path("/canvas");
         }
 
         $scope.productSortOrder = "+ProfitMargin";
-        $scope.currentLevel = "Raw Materials"
+        $scope.currentLevel = "Raw Materials";
         $scope.updateLevel = updateLevel;
         $scope.loadLevel = loadLevel;
         $scope.startAnalysis = startAnalysis;

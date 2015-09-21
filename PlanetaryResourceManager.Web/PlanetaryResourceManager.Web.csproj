@@ -66,8 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\site.css" />
-    <Content Include="Content\ui-bootstrap-0.13.4-csp.css" />
+    <Content Include="canvas.html" />
+    <Content Include="Content\Angular\ui-bootstrap-0.13.4-csp.css" />
+    <Content Include="Content\KendoUI\kendo.common.min.css" />
+    <Content Include="Content\KendoUI\kendo.default.min.css" />
+    <Content Include="Content\Custom\site.css" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -81,14 +84,17 @@
     <Content Include="main.html" />
     <Content Include="Scripts\Custom\apiService.js" />
     <Content Include="Scripts\Custom\app.js" />
+    <Content Include="Scripts\Custom\DragDropController.js" />
     <Content Include="Scripts\Custom\ProductsController.js" />
     <Content Include="Scripts\Angular\ui-bootstrap-0.13.4.js" />
+    <Content Include="Scripts\KendoUI\kendo.all.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Bootstrap\" />
     <Folder Include="Scripts\Bootstrap\" />
   </ItemGroup>
   <PropertyGroup>
