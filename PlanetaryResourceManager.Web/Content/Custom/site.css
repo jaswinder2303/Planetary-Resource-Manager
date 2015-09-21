@@ -7,4 +7,15 @@
     padding: 5px;
     height: 600px;
     overflow-y:auto;
+    border:solid;
+    border-width: 2px;
+}
+
+.col-md-3{
+    border-right:solid;
+    border-right-width: 2px;
+}
+
+.main-display div{
+    height: 100%;
 }

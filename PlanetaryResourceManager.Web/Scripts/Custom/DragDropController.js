@@ -3,8 +3,24 @@
 
     var dragDropController = function ($scope, apiService) {
 
-        var onProductLoad = function (data) {
-            $scope.products = new kendo.data.HierarchicalDataSource(data);
+        var onProductLoad = function (payload) {
+            //debugger;
+            var panelData = new kendo.data.HierarchicalDataSource({ data: [] });
+            var treeData = new kendo.data.HierarchicalDataSource();
+            //treeData.add({ text: "Item 1" });
+
+            payload.forEach(function (item) {
+                treeData.add({
+                    text: item.Product.Name
+                });
+            });
+
+            $scope.products = treeData;
+            $scope.dropHost = panelData;
+
+            $(".treeViewPanel").kendoTreeView({
+                dragAndDrop: true,
+            });
         };
 
         var onError = function (reason) {

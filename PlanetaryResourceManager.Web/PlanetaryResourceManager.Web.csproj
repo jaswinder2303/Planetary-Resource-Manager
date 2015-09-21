@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="canvas.html" />
     <Content Include="Content\Angular\ui-bootstrap-0.13.4-csp.css" />
+    <Content Include="Content\KendoUI\Default\sprite.png" />
     <Content Include="Content\KendoUI\kendo.common.min.css" />
     <Content Include="Content\KendoUI\kendo.default.min.css" />
     <Content Include="Content\Custom\site.css" />
