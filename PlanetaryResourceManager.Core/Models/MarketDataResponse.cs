@@ -73,7 +73,7 @@ namespace PlanetaryResourceManager.Core.Models
             }
         }
 
-        internal static void ResequenceOrders(MarketDataResponse data)
+        public static void ResequenceOrders(MarketDataResponse data)
         {
             data.SellOrders = data.SellOrders.OrderBy(arg => arg.Price).ToList();
             data.BuyOrders = data.BuyOrders.OrderByDescending(arg => arg.Price).ToList();

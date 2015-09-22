@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.Core.Models
 {
-    class MarketDataRequest
+    public class MarketDataRequest
     {
         public string TypeId { get; set; }
         public string Duration { get; set; }

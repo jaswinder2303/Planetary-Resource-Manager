@@ -30,7 +30,31 @@
         }
 
         var startAnalysis = function () {
-            $location.path("/canvas");
+            //$location.path("/canvas");
+            $.connection.hub.start()
+                .done(function () {
+                    $.connection.analysisHub.server.start($scope.currentLevel);
+                })
+                .fail(function () { console.log('Could not Connect to SignalR Server!'); });
+        }
+
+        var analysisUpdate = function (data) {
+            console.log("Update from remote server: " + data.ProgressIndex);
+
+            $()
+        }
+
+        var analysisComplete = function (data) {
+            console.log("Update from remote server: " + data);
+        }
+
+        var activate = function () {
+            $.connection.hub.url = "http://localhost:23456/signalr";
+            $.connection.analysisHub.client.updateAnalysisItem = analysisUpdate;
+            $.connection.analysisHub.client.analysisComplete = analysisComplete;
+
+            loadProductLevels();
+            apiService.getProducts().then(onProductLoad, onError);
         }
 
         $scope.productSortOrder = "+ProfitMargin";
@@ -38,8 +62,7 @@
         $scope.updateLevel = updateLevel;
         $scope.loadLevel = loadLevel;
         $scope.startAnalysis = startAnalysis;
-        loadProductLevels();
-        apiService.getProducts().then(onProductLoad, onError);
+        activate();
     };
 
     app.controller("ProductsController", ProductsController);

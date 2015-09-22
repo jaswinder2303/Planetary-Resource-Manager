@@ -16,7 +16,7 @@ namespace PlanetaryResourceManager.Core.Models
         public double ProductionCost { get; set; }
         public double ProfitMargin { get; set; }
 
-        internal void UpdateProperties()
+        public void UpdateProperties()
         {
             RaisePropertyChanged("SaleValue");
             RaisePropertyChanged("ProductionCost");

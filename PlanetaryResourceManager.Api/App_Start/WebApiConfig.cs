@@ -11,8 +11,8 @@ namespace PlanetaryResourceManager.Api
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var cors = new EnableCorsAttribute("http://localhost:49740", "*", "*");
-            config.EnableCors(cors);
+            //var cors = new EnableCorsAttribute("http://localhost:49740", "*", "*");
+            //config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

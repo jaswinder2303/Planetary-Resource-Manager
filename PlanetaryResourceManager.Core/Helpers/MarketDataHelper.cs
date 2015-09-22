@@ -4,15 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Xml.Linq;
 
-namespace PlanetaryResourceManager.Helpers
+namespace PlanetaryResourceManager.Core.Helpers
 {
-    class MarketDataHelper : IDisposable
+    public class MarketDataHelper : IDisposable
     {
         private WebClient _client;
         private string _host;
-        internal const string Jita = "30000142";
-        internal const string Freshness = "24";
-        internal const string QuickLook = "http://api.eve-central.com/api/quicklook";
+        public const string Jita = "30000142";
+        public const string Freshness = "24";
+        public const string QuickLook = "http://api.eve-central.com/api/quicklook";
 
         public MarketDataHelper(string host)
         {

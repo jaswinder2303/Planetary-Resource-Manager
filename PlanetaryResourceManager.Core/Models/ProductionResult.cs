@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.Core.Models
 {
-    class ProductionResult
+    public class ProductionResult
     {
         public string InputQuantity { get; set; }
         public int OutputQuantity { get; set; }

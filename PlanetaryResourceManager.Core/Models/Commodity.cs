@@ -12,7 +12,7 @@ namespace PlanetaryResourceManager.Core.Models
         public double Price { get; set; }
         public int ItemId { get; set; }
         public bool IsRawMaterial { get; set; }
-        internal MarketDataResponse Data { get; set; }
+        public  MarketDataResponse Data { get; set; }
 
         public override string ToString()
         {
