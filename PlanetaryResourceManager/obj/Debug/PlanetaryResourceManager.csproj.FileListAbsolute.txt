@@ -47,3 +47,4 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\LoggingUtility.dll
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\bin\Debug\LoggingUtility.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager.csprojResolveAssemblyReference.cache
+C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\PlanetaryResourceManager_Content.g.cs
