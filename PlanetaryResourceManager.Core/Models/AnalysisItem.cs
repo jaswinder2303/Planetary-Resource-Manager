@@ -15,6 +15,7 @@ namespace PlanetaryResourceManager.Core.Models
         public double SaleValue { get; set; }
         public double ProductionCost { get; set; }
         public double ProfitMargin { get; set; }
+        public int ProductId { get; set; }
 
         public void UpdateProperties()
         {

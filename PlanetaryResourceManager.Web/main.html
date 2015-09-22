@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in products | orderBy: productSortOrder" data-productid="{{item.Product.ItemId}}">
+                    <tr ng-repeat="item in products | orderBy: productSortOrder" data-productid="{{item.ProductId}}">
                         <td>{{item.Product.Name}}</td>
                         <td>{{item.ProductionCost | currency}}</td>
                         <td>{{item.SaleValue | currency}}</td>

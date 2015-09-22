@@ -15,18 +15,21 @@ namespace PlanetaryResourceManager.Api.Services
         private int ProductionLevel { get; set; }
         private List<AnalysisItem> AnalysisItems { get; set; }
 
-        public async void Start(string level)
+        public async void Start(int level, List<AnalysisItem> analysisItems, Action<List<AnalysisItem>> postFunc)
         {
-            ProductionLevel = RepositoryHelper.ProductionLevels[level];
-            AnalysisItems = RepositoryHelper.Repository.GetProductionItems(ProductionLevel);
-
+            ProductionLevel = level;
+            AnalysisItems = analysisItems;
 
             var progress = new Progress<AnalysisResult>(result =>
             {
                 ProgressManager.ReportProgress(result);
             });
 
-            await Task.Factory.StartNew(() => Analyze(progress));
+            await Task.Factory.StartNew(() => Analyze(progress)).ContinueWith((task) =>
+            {
+                AnalysisItems = AnalysisItems.OrderByDescending(member => member.ProfitMargin).ToList();
+                postFunc(AnalysisItems);
+            });
         }
 
         private void Analyze(IProgress<AnalysisResult> progress)

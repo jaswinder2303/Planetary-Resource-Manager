@@ -8,6 +8,9 @@ namespace PlanetaryResourceManager.Api
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
+                        "~/Scripts/jquery.signalR-2.2.0.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

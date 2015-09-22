@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module("evePiManager");
 
-    var ProductsController = function ($scope, $location, apiService) {
+    var ProductsController = function ($scope, $location, $filter, apiService) {
 
         var onProductLoad = function (data) {
             $scope.products = data;
@@ -38,27 +38,36 @@
                 .fail(function () { console.log('Could not Connect to SignalR Server!'); });
         }
 
-        var analysisUpdate = function (data) {
-            console.log("Update from remote server: " + data.ProgressIndex);
-
-            $()
+        var onAnalysisUpdate = function (data) {
+            $scope.$apply(function () {
+                var found = $filter('getIndexByProperty')('ProductId', data.Item.ProductId, $scope.products);
+                if (found != null) {
+                    //console.log("Updating price for " + $scope.products[found].Product.Name + " from " + $scope.products[found].ProfitMargin + " to " + data.Item.ProfitMargin)
+                    $scope.products[found] = data.Item;
+                } else {
+                    console.log('Not found for ' + data.Item.ProductId);
+                }
+            });
         }
 
-        var analysisComplete = function (data) {
-            console.log("Update from remote server: " + data);
+        var onAnalysisComplete = function (data) {
+            //console.log("Completed from remote server: ");
+            $scope.$apply(function () {
+                $filter('orderBy')($scope.products, $scope.productSortOrder)
+            });
         }
 
         var activate = function () {
             $.connection.hub.url = "http://localhost:23456/signalr";
-            $.connection.analysisHub.client.updateAnalysisItem = analysisUpdate;
-            $.connection.analysisHub.client.analysisComplete = analysisComplete;
+            $.connection.analysisHub.client.updateAnalysisItem = onAnalysisUpdate;
+            $.connection.analysisHub.client.analysisComplete = onAnalysisComplete;
 
             loadProductLevels();
-            apiService.getProducts().then(onProductLoad, onError);
+            apiService.getProductsForLevel($scope.currentLevel).then(onProductLoad, onError);
         }
 
-        $scope.productSortOrder = "+ProfitMargin";
-        $scope.currentLevel = "Raw Materials";
+        $scope.productSortOrder = "-ProfitMargin";
+        $scope.currentLevel = "Refined Materials";
         $scope.updateLevel = updateLevel;
         $scope.loadLevel = loadLevel;
         $scope.startAnalysis = startAnalysis;

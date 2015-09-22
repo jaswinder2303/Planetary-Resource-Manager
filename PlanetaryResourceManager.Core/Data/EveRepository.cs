@@ -21,6 +21,7 @@ namespace PlanetaryResourceManager.Core.Data
             var items = _context.Items.Where(arg => arg.ProductionLevel == level).Select(item => new AnalysisItem
             {
                 ProductionLevel = item.ProductionLevel,
+                ProductId = item.ItemId,
                 Product = new Product
                 {
                     Name = item.Name,

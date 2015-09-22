@@ -15,4 +15,29 @@
         .otherwise({ redirectTo: "/main" })
     });
 
+    app.filter('getByProperty', function () {
+        return function (propertyName, propertyValue, collection) {
+            var i = 0, len = collection.length;
+            for (; i < len; i++) {
+                var current = collection[i][propertyName];
+                if (collection[i][propertyName] == +propertyValue) {
+                    return collection[i];
+                }
+            }
+            return null;
+        }
+    });
+
+    app.filter('getIndexByProperty', function () {
+        return function (propertyName, propertyValue, collection) {
+            var i = 0, len = collection.length;
+            for (; i < len; i++) {
+                var current = collection[i][propertyName];
+                if (collection[i][propertyName] == +propertyValue) {
+                    return i;
+                }
+            }
+            return null;
+        }
+    });
 }());

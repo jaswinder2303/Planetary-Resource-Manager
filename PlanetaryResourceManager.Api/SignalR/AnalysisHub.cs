@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNet.SignalR;
 using PlanetaryResourceManager.Api.Services;
 using PlanetaryResourceManager.Core.Events;
+using PlanetaryResourceManager.Core.Helpers;
 using PlanetaryResourceManager.Core.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PlanetaryResourceManager.Api.SignalR
 {
@@ -16,23 +19,28 @@ namespace PlanetaryResourceManager.Api.SignalR
         {
             ProgressManager.OnProgressUpdated += OnAnalysisProgressUpdated;
             AnalysisService service = new AnalysisService();
-            service.Start(level);
+
+            var productionLevel = RepositoryHelper.ProductionLevels[level];
+            AnalysisItems = RepositoryHelper.Repository.GetProductionItems(productionLevel);
+
+            service.Start(productionLevel, AnalysisItems, RebuildList);
         }
+
+        private List<AnalysisItem> AnalysisItems { get; set; }
 
         private void OnAnalysisProgressUpdated(AnalysisResult progress)
         {
             Clients.All.updateAnalysisItem(progress);
 
-            if (progress.ProgressIndex == 100)
-            {
-                RebuildList();
-            }
+            //if (progress.ProgressIndex == 100)
+            //{
+            //    RebuildList();
+            //}
         }
 
-        private void RebuildList()
+        private void RebuildList(List<AnalysisItem> analysisItems)
         {
-            //rebuild the list and send
-            Clients.All.analysisComplete("Analysis complete");
+            Clients.All.analysisComplete("Complete");
             ProgressManager.OnProgressUpdated -= OnAnalysisProgressUpdated;
         }
     }
