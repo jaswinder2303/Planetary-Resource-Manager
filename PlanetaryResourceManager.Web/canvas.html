@@ -3,12 +3,12 @@
         <div class="top-banner">
         </div>
         <div class="main-display container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="treeViewPanel" kendo-tree-view="tree" k-data-source="products"></div>
+            <div class="row canvasPanel">
+                <div class="col-md-3 leftPanel">
+                    <div class="treeViewPanel treeViewPanelSource"></div>
                 </div>
-                <div class="col-md-9">
-                    <div class="treeViewPanel" kendo-tree-view="tree" k-data-source="dropHost"></div>
+                <div class="col-md-9 rightPanel">
+                    <div class="treeViewPanel treeViewPanelTarget"></div>
                 </div>
             </div>
         </div>
@@ -19,4 +19,8 @@
     <div ng-show="error">
         {{error}}
     </div>
+    <script id="treeview-template" type="text/kendo-ui-template">
+        #: item.text #
+        <button class='k-button'>Edit</button>
+    </script>
 </div>
