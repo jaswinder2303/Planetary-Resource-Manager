@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager\obj\Debug\
 PlanetaryResourceManager
 none
 false
 DEBUG;TRACE
-C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager\App.xaml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager\App.xaml
 6-1599221010
 2-1285781325
 47-1245695033
-18-1110983326
+18-227272883
 Views\CommodityControl.xaml;Views\EveManagementWindow.xaml;Views\ManufactureView.xaml;Views\ProductionAnalysisView.xaml;Views\TradeAnalysisView.xaml;Views\TradingReportWindow.xaml;
 
 False
