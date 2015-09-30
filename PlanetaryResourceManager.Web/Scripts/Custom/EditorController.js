@@ -17,5 +17,16 @@
         activate();
     };
 
+    var productView = function () {
+        return {
+            restrict: 'E',
+            scope: {
+                item: '='
+            },
+            templateUrl: 'product.html'
+        };
+    };
+
     app.controller("EditorController", editorController);
+    app.directive('productEditor', productView);
 }());

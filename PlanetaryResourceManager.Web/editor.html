@@ -4,25 +4,11 @@
     </div>
 
     <div class="modal-body">
-        <div class="row .product-display .commodity-display">
-            <div class="col-sm-5">{{modalData.Product.Name}}</div>
-            <div class="col-sm-7">
-                <div class="row">
-                    <span class="col-sm-3">Price</span>
-                    <span class="col-sm-9">{{modalData.Product.Price | currency}}</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row .material-display .commodity-display" ng-repeat="material in modalData.Materials">
-            <div class="col-sm-5">{{material.Name}}</div>
-            <div class="col-sm-7">
-                <div class="row">
-                    <span class="col-sm-3">Price</span>
-                    <span class="col-sm-9"><input type="text" ng-model="material.Price" /></span>
-                </div>
-            </div>
-        </div>
+        <product-Editor item="modalData.Product" class="row commodity-display product-display">
+        </product-Editor>
+        <hr/>
+        <product-Editor ng-repeat="material in modalData.Materials" item="material" class="row commodity-display material-display">
+        </product-Editor>
     </div>
 
     <div class="modal-footer">
