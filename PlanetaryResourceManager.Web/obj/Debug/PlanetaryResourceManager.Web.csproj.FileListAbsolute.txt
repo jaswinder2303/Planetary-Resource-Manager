@@ -15,7 +15,6 @@ C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceMa
 C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\bin\PlanetaryResourceManager.Web.pdb
 C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.csprojResolveAssemblyReference.cache
 C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.dll
 C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Web\bin\roslyn\csc.exe
@@ -38,3 +37,4 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.csprojResolveAssemblyReference.cache
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.dll
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.pdb
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Web\obj\Debug\PlanetaryResourceManager.Web.csprojResolveAssemblyReference.cache

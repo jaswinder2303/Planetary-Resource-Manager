@@ -1,0 +1,10 @@
+Log Messages
+Product  : PlanetaryResourceManager
+Timestamp: 2015-09-30 14:17:09
+
+Trace Messages  [Count = 2]
+===========================
+[Trace]  : [30/09/2015 14:17:09][Trace]   Staring PI analysis
+[Trace]  : [30/09/2015 14:17:20][Trace]   Duration=[00:00:11.2771276] Completed PI analysis
+
+
