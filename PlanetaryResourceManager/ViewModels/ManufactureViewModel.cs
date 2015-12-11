@@ -28,6 +28,7 @@ namespace PlanetaryResourceManager.ViewModels
         public double ProfitMargin { get; set; }
         public ICommand CalculateCommand { get; set; }
         public ICommand ListOrdersCommand { get; set; }
+        public int ProductionLevel { get; set; }
 
         public ManufactureViewModel() : this(null)
         {
@@ -40,6 +41,7 @@ namespace PlanetaryResourceManager.ViewModels
             {
                 item = new AnalysisItem
                 {
+                    ProductionLevel = 3,
                     Product = new Product
                     {
                         Name = "Microfiber Sheilding",
@@ -69,6 +71,7 @@ namespace PlanetaryResourceManager.ViewModels
             TargetProduct = item.Product;
             InputA = item.Materials[0];
             InputB = item.Materials[1];
+            ProductionLevel = item.ProductionLevel;
 
             if (item.Materials.Count == 3)
             {
@@ -110,6 +113,13 @@ namespace PlanetaryResourceManager.ViewModels
             if (InputC != null)
             {
                 materials.Add(InputC);
+            }
+
+            TargetProduct.OutputBatchSize = ProductionHelper.GetOutputBatchSize(ProductionLevel);
+            foreach (var material in materials)
+            {
+                material.ImportCost = ProductionHelper.GetImportCost(material.InputLevel);
+                material.InputBatchSize = ProductionHelper.GetInputBatchSize(material.InputLevel);
             }
 
             var result = ProductionHelper.Calculate(TargetProduct, materials, BatchSize);
