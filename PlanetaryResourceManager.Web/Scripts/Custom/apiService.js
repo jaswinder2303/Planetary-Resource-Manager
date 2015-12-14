@@ -3,21 +3,21 @@
     var apiService = function ($http) {
 
         var getProducts = function () {
-            return $http.get("http://localhost:23456/api/products/getallproducts")
+            return $http.get("http://localhost:4444/api/products/getallproducts")
               .then(function (response) {
                   return response.data
               })
         }
 
         var getProductsForLevel = function (name) {
-            return $http.get("http://localhost:23456/api/products/loadallproducts/" + name)
+            return $http.get("http://localhost:4444/api/products/loadallproducts/" + name)
               .then(function (response) {
                   return response.data
               })
         }
 
         var getProductLevels = function (name) {
-            return $http.get("http://localhost:23456/api/products/loadproductlevels")
+            return $http.get("http://localhost:4444/api/products/loadproductlevels")
               .then(function (response) {
                   return response.data
               })

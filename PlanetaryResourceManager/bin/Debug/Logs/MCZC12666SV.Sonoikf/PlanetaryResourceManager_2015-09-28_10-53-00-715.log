@@ -1,0 +1,10 @@
+Log Messages
+Product  : PlanetaryResourceManager
+Timestamp: 2015-09-28 10:53:00
+
+Trace Messages  [Count = 2]
+===========================
+[Trace]  : [28/09/2015 10:53:00][Trace]   Staring Trade analysis
+[Trace]  : [28/09/2015 10:53:19][Trace]   Duration=[00:00:18.4178416] Completed Trade analysis
+
+

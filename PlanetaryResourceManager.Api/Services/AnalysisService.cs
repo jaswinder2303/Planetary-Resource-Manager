@@ -69,7 +69,6 @@ namespace PlanetaryResourceManager.Api.Services
 
                             var materialData = helper.GetData(request);
                             MarketDataResponse.ResequenceOrders(materialData);
-                            //order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
                             order = materialData.LowestSellOrder(null);
                             input.Price = order != null ? order.Price : 0.0;
                             input.ImportCost = ProductionHelper.GetImportCost(input.InputLevel);
@@ -90,6 +89,8 @@ namespace PlanetaryResourceManager.Api.Services
                             ProgressIndex = (int)currentProgress,
                             Item = item
                         });
+
+                        Task.Delay(2000).Wait();
                     }
                 }, TaskCreationOptions.AttachedToParent));
             }

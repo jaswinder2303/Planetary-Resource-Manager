@@ -19,3 +19,15 @@
 .main-display div{
     height: 100%;
 }
+
+.product-display{
+    margin-bottom: 10px;
+}
+
+.material-display{
+    padding-top: 5px;
+}
+
+.commodity-display{
+    padding-left: 10px;
+}

@@ -117,3 +117,16 @@ C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManag
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Api\obj\Debug\PlanetaryResourceManager.Api.pdb
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Cors.dll
 C:\Users\Fola\Documents\GitHub\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Cors.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Cors.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Security.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Owin.dll
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Cors.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\SonoikF\Code\Private\Git\Planetary-Resource-Manager\PlanetaryResourceManager.Api\bin\Microsoft.Owin.Security.xml
