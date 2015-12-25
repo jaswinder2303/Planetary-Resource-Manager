@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PlanetaryResourceManager.Core.Helpers
 {
     public class ProductionHelper
     {
-        internal const int BatchSize = 8000;
+        public const int BatchSize = 8000;
 
         public static ProductionResult Calculate(Product product, List<RawMaterial> materials, int batchSize = BatchSize)
         {

@@ -24,7 +24,7 @@ namespace PlanetaryResourceManager.Core.Models
             }
         }
 
-        internal void Update(double securityLevel)
+        public void Update(double securityLevel)
         {
             Items.ForEach(arg => arg.Update(securityLevel));
             Items = Items.OrderByDescending(arg => arg.ProfitMargin).ToList();

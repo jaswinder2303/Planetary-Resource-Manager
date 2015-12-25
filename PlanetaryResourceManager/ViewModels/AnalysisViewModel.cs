@@ -1,7 +1,7 @@
 ﻿using PlanetaryResourceManager.Commands;
-using PlanetaryResourceManager.Data;
-using PlanetaryResourceManager.Helpers;
-using PlanetaryResourceManager.Models;
+using PlanetaryResourceManager.Core.Data;
+using PlanetaryResourceManager.Core.Helpers;
+using PlanetaryResourceManager.Core.Models;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Linq;
@@ -10,9 +10,8 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
 using PlanetaryResourceManager.Views;
-using PlanetaryResourceManager.Events;
+using PlanetaryResourceManager.Core.Events;
 using LoggingUtility;
-using System.Threading;
 
 namespace PlanetaryResourceManager.ViewModels
 {

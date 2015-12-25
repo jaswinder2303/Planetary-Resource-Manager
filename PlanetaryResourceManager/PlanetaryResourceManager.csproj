@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PlanetaryResourceManager</RootNamespace>
     <AssemblyName>PlanetaryResourceManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,48 +88,6 @@
     <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="Converters\CurrencyConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
-    <Compile Include="Data\Category.cs">
-      <DependentUpon>EveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Commodity.cs">
-      <DependentUpon>EveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EveData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EveData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EveData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EveData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EveData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EveRepository.cs" />
-    <Compile Include="Data\Group.cs">
-      <DependentUpon>EveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Item.cs">
-      <DependentUpon>EveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Events\EventsManager.cs" />
-    <Compile Include="Events\ProgressManager.cs" />
-    <Compile Include="Helpers\MarketDataHelper.cs" />
-    <Compile Include="Helpers\ProductionHelper.cs" />
-    <Compile Include="Models\AnalysisItem.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\InputComparer.cs" />
-    <Compile Include="Models\MarketDataRequest.cs" />
-    <Compile Include="Models\MarketDataResponse.cs" />
-    <Compile Include="Models\MarketOrder.cs" />
-    <Compile Include="Models\ProductionResult.cs" />
-    <Compile Include="Models\TradeCategory.cs" />
-    <Compile Include="Models\TradeGroup.cs" />
-    <Compile Include="Models\TradeItem.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ManagementViewModel.cs" />
@@ -183,9 +142,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Commodity.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\RawMaterial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -203,23 +159,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Data\EveData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EveData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Data\EveData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EveData.edmx</DependentUpon>
-      <LastGenOutput>EveData.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Data\EveData.edmx.diagram">
-      <DependentUpon>EveData.edmx</DependentUpon>
-    </None>
-    <None Include="Data\EveData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EveData.edmx</DependentUpon>
-      <LastGenOutput>EveData.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -259,10 +198,15 @@
       <Project>{01f07d43-d5f7-4e89-8f2a-c94e33421a79}</Project>
       <Name>LoggingUtility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PlanetaryResourceManager.Core\PlanetaryResourceManager.Core.csproj">
+      <Project>{a7d2f6cb-73ee-46a6-a15a-8dd1e7003ab4}</Project>
+      <Name>PlanetaryResourceManager.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Scripts\EVEPI Data.sql" />
-    <Content Include="Data\Scripts\EVEPI Schema.sql" />
+    <Folder Include="Events\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

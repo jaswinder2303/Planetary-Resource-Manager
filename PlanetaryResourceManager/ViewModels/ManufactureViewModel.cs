@@ -1,14 +1,11 @@
-﻿using PlanetaryResourceManager.Commands;
-using PlanetaryResourceManager.Helpers;
-using PlanetaryResourceManager.Models;
-using PlanetaryResourceManager.Views;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using PlanetaryResourceManager.Commands;
+using PlanetaryResourceManager.Core.Helpers;
+using PlanetaryResourceManager.Core.Models;
+using PlanetaryResourceManager.Views;
 
 namespace PlanetaryResourceManager.ViewModels
 {

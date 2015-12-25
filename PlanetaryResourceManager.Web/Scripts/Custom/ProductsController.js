@@ -51,7 +51,7 @@
         var onAnalysisComplete = function (data) {
             //console.log("Completed from remote server: ");
             $scope.$apply(function () {
-                $filter('orderBy')($scope.products, $scope.productSortOrder)
+                $filter('orderBy')($scope.products, $scope.productSortOrder);
             });
         };
 
@@ -60,7 +60,7 @@
         };
 
         var activate = function () {
-            $.connection.hub.url = "http://localhost:23456/signalr";
+            $.connection.hub.url = "http://localhost:4444/signalr";
             $.connection.analysisHub.client.updateAnalysisItem = onAnalysisUpdate;
             $.connection.analysisHub.client.analysisComplete = onAnalysisComplete;
 

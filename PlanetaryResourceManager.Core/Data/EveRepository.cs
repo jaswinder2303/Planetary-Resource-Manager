@@ -11,7 +11,7 @@ namespace PlanetaryResourceManager.Core.Data
     {
         private EvePIDataEntities _context;
 
-        internal EveRepository()
+        public EveRepository()
         {
             _context = new EvePIDataEntities();
         }

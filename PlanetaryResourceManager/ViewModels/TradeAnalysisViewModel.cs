@@ -1,9 +1,9 @@
 ﻿using LoggingUtility;
 using PlanetaryResourceManager.Commands;
-using PlanetaryResourceManager.Data;
-using PlanetaryResourceManager.Events;
-using PlanetaryResourceManager.Helpers;
-using PlanetaryResourceManager.Models;
+using PlanetaryResourceManager.Core.Data;
+using PlanetaryResourceManager.Core.Events;
+using PlanetaryResourceManager.Core.Helpers;
+using PlanetaryResourceManager.Core.Models;
 using PlanetaryResourceManager.Views;
 using System;
 using System.Collections.Generic;
