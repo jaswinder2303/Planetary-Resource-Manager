@@ -10,6 +10,7 @@ namespace PlanetaryResourceManager.Core.Models
         public double StorePrice { get; set; }
         public double MarketPrice { get; set; }
         public double ProfitMargin { get; set; }
+        public double ProfitEfficiency { get; set; }
         public Product Product { get; set; }
 
         public void UpdateProperties()

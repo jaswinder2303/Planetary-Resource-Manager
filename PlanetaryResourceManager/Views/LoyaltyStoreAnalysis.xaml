@@ -26,7 +26,7 @@
                   behaviour:ItemSelectorBehaviour.ItemDoubleClicked="{Binding ShowDetails}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="400" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Width="360" Header="Name" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Width="130" Header="Loyalty Points" 
                                     DisplayMemberBinding="{Binding Points, Converter={StaticResource numberConv}}"/>
                     <GridViewColumn Width="130" Header="ISK Cost" 
@@ -35,6 +35,8 @@
                                     DisplayMemberBinding="{Binding MarketPrice, Converter={StaticResource moneyConv}}"/>
                     <GridViewColumn Width="130" Header="Profit Margin" 
                                     DisplayMemberBinding="{Binding ProfitMargin, Converter={StaticResource moneyConv}}"/>
+                    <GridViewColumn Width="130" Header="ISK Effiency" 
+                                    DisplayMemberBinding="{Binding ProfitEfficiency, Converter={StaticResource numberConv}}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -48,8 +50,8 @@
                 <TextBlock Text="Page Size" Margin="5,0"/>
                 <ComboBox Margin="5,0" Width="120" ItemsSource="{Binding PageSizes}"
                           SelectedValue="{Binding CurrentPageSize}"/>
-                <Button Content="&lt;&lt;" Command="{Binding PreviousCommand}"/>
-                <Button Content="&gt;&gt;" Command="{Binding NextCommand}"/>
+                <Button Content="&lt;&lt;" Command="{Binding PreviousCommand}" IsEnabled="{Binding CanGoBackward}"/>
+                <Button Content="&gt;&gt;" Command="{Binding NextCommand}" IsEnabled="{Binding CanGoForward}"/>
             </StackPanel>
             <Button Grid.Column="1" Content="Start" Command="{Binding AnalyzeCommand}"/>
             <ProgressBar Grid.Column="2" Margin="5,0" Value="{Binding CurrentProgress}" Maximum="100"

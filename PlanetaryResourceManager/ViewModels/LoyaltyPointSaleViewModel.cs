@@ -19,7 +19,11 @@ namespace PlanetaryResourceManager.ViewModels
         private readonly List<LoyaltyStoreItem> _storeItems;
         private readonly Dictionary<string, int> _pageSizes;
         private int _currentProgress;
+        private int _currentPage;
+        private string _currentPageSize;
         private bool _analysisInProgress;
+        private bool _canGoBackward;
+        private bool _canGoForward;
 
         public LoyaltyPointSaleViewModel(EveRepository repository) : base(repository)
         {
@@ -30,9 +34,11 @@ namespace PlanetaryResourceManager.ViewModels
                 {"100", 100},
                 {"All", -1}
             };
-            CurrentPageSize = "50";
+            _currentPageSize = "All";
             PageSizes = new ObservableCollection<string>(_pageSizes.Keys);
             AnalyzeCommand = new DelegateCommand(Analyze);
+            NextCommand = new DelegateCommand(GoForward);
+            PreviousCommand = new DelegateCommand(GoBack);
             ShowDetails = new DelegateCommand(ListOrders);
             _storeItems = Repository.GetLoyaltyStoreItems();
             StoreItems = new ObservableCollection<LoyaltyStoreItem>();
@@ -45,7 +51,18 @@ namespace PlanetaryResourceManager.ViewModels
         public ICommand PreviousCommand { get; set; }
         public ICommand AnalyzeCommand { get; set; }
         public ICommand ShowDetails { get; set; }
-        public string CurrentPageSize { get; set; }
+
+        public string CurrentPageSize
+        {
+            get { return _currentPageSize; }
+            set
+            {
+                _currentPageSize = value;
+                _currentPage = 0;
+                RebuildList();
+            }
+        }
+
         public int CurrentProgress
         {
             get { return _currentProgress; }
@@ -70,6 +87,38 @@ namespace PlanetaryResourceManager.ViewModels
                 _analysisInProgress = value;
                 RaisePropertyChanged("AnalysisInProgress");
             }
+        }
+
+        public bool CanGoBackward
+        {
+            get { return _canGoBackward; }
+            set
+            {
+                _canGoBackward = value;
+                RaisePropertyChanged("CanGoBackward");
+            }
+        }
+
+        public bool CanGoForward
+        {
+            get { return _canGoForward; }
+            set
+            {
+                _canGoForward = value;
+                RaisePropertyChanged("CanGoForward");
+            }
+        }
+
+        private void GoBack(object arg)
+        {
+            --_currentPage;
+            RebuildList();
+        }
+
+        private void GoForward(object arg)
+        {
+            ++_currentPage;
+            RebuildList();
         }
 
         private void ListOrders(object arg)
@@ -97,7 +146,22 @@ namespace PlanetaryResourceManager.ViewModels
         private void RebuildList()
         {
             StoreItems.Clear();
-            _storeItems.OrderByDescending(member => member.ProfitMargin).ToList().ForEach(item => StoreItems.Add(item));
+            var pageSize = _pageSizes[CurrentPageSize];
+            var previousPage = _currentPage * pageSize;
+
+            if (pageSize < 0)
+            {
+                pageSize = _storeItems.Count;
+                CanGoForward = false;
+            }
+            else
+            {
+                CanGoForward = ((_currentPage + 1) * pageSize) < _storeItems.Count;
+            }
+
+            CanGoBackward = _currentPage > 0;
+            
+            _storeItems.OrderByDescending(member => member.ProfitEfficiency).Skip(previousPage).Take(pageSize).ToList().ForEach(item => StoreItems.Add(item));
         }
 
         private async void Analyze(object obj)
@@ -148,6 +212,7 @@ namespace PlanetaryResourceManager.ViewModels
                         item.Product.Price = order != null ? order.Price : 0.0;
                         item.MarketPrice = order != null ? order.Price : 0.0;
                         item.ProfitMargin = item.MarketPrice - item.StorePrice;
+                        item.ProfitEfficiency = item.ProfitMargin/item.Points;
                         item.UpdateProperties();
 
                         var currentProgress = ((double)++index / _storeItems.Count) * 100;
