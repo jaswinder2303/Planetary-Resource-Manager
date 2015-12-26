@@ -86,6 +86,9 @@
     <Compile Include="Data\Item.cs">
       <DependentUpon>EveData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\LoyaltyItem.cs">
+      <DependentUpon>EveData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Events\EventsManager.cs" />
     <Compile Include="Events\ProgressManager.cs" />
     <Compile Include="Helpers\MarketDataHelper.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Commodity.cs" />
     <Compile Include="Models\InputComparer.cs" />
+    <Compile Include="Models\LoyaltyStoreItem.cs" />
     <Compile Include="Models\MarketDataRequest.cs" />
     <Compile Include="Models\MarketDataResponse.cs" />
     <Compile Include="Models\MarketOrder.cs" />

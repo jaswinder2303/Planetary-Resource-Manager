@@ -29,5 +29,6 @@ namespace PlanetaryResourceManager.Core.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<LoyaltyItem> LoyaltyItems { get; set; }
     }
 }

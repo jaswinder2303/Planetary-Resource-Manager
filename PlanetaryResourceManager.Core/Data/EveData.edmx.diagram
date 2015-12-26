@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="EvePIDataModel.Group" Width="1.5" PointX="3" PointY="3.875" />
         <AssociationConnector Association="EvePIDataModel.FK_Group_Category" />
         <AssociationConnector Association="EvePIDataModel.FK_Commodity_Group" />
+        <EntityTypeShape EntityType="EvePIDataModel.LoyaltyItem" Width="1.5" PointX="4.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

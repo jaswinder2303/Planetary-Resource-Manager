@@ -87,9 +87,11 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="Converters\CurrencyConverter.cs" />
+    <Compile Include="Converters\NumericConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoyaltyPointSaleViewModel.cs" />
     <Compile Include="ViewModels\ManagementViewModel.cs" />
     <Compile Include="ViewModels\ManufactureViewModel.cs" />
     <Compile Include="ViewModels\TradeAnalysisViewModel.cs" />
@@ -99,6 +101,9 @@
     </Compile>
     <Compile Include="Views\EveManagementWindow.xaml.cs">
       <DependentUpon>EveManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoyaltyStoreAnalysis.xaml.cs">
+      <DependentUpon>LoyaltyStoreAnalysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManufactureView.xaml.cs">
       <DependentUpon>ManufactureView.xaml</DependentUpon>
@@ -121,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EveManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoyaltyStoreAnalysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

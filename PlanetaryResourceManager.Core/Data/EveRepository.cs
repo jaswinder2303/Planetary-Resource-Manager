@@ -73,6 +73,26 @@ namespace PlanetaryResourceManager.Core.Data
             return categories;
         }
 
+        public List<LoyaltyStoreItem> GetLoyaltyStoreItems()
+        {
+            var items = _context.LoyaltyItems.ToList();
+
+            var storeItems = items.Select(arg => new LoyaltyStoreItem
+            {
+                ItemId = arg.ItemId,
+                Name = arg.ItemName,
+                Points = arg.LPCost,
+                StorePrice = arg.ISKCost,
+                Product = new Product
+                {
+                    Name = arg.ItemName,
+                    ItemId = arg.ItemId
+                },
+            }).ToList();
+
+            return storeItems;
+        }
+
         public void Dispose()
         {
             if (_context != null)

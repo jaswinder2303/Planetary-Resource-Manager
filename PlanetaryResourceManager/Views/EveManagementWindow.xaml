@@ -15,6 +15,9 @@
             <TabItem Header="Production Analysis">
                 <views:ProductionAnalysisView DataContext="{Binding ProductionViewModel}"/>
             </TabItem>
+            <TabItem Header="Loyalty Points Sale Analysis">
+                <views:LoyaltyStoreAnalysis DataContext="{Binding LoyaltyPointViewModel}"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

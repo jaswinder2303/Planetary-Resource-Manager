@@ -13,10 +13,12 @@ namespace PlanetaryResourceManager.ViewModels
             _repository = new EveRepository();
             ProductionViewModel = new AnalysisViewModel(_repository);
             TradeViewModel = new TradeAnalysisViewModel(_repository);
+            LoyaltyPointViewModel = new LoyaltyPointSaleViewModel(_repository);
         }
 
         public AnalysisViewModel ProductionViewModel { get; set; }
         public TradeAnalysisViewModel TradeViewModel { get; set; }
+        public LoyaltyPointSaleViewModel LoyaltyPointViewModel { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
