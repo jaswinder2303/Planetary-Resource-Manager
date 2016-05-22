@@ -26,6 +26,7 @@ namespace PlanetaryResourceManager.ViewModels
         public ICommand CalculateCommand { get; set; }
         public ICommand ListOrdersCommand { get; set; }
         public int ProductionLevel { get; set; }
+        private double AverageTax { get; set; }
 
         public ManufactureViewModel() : this(null)
         {
@@ -65,6 +66,7 @@ namespace PlanetaryResourceManager.ViewModels
                 };
             }
 
+            AverageTax = 7.7;
             TargetProduct = item.Product;
             InputA = item.Materials[0];
             InputB = item.Materials[1];
@@ -113,9 +115,10 @@ namespace PlanetaryResourceManager.ViewModels
             }
 
             TargetProduct.OutputBatchSize = ProductionHelper.GetOutputBatchSize(ProductionLevel);
+            TargetProduct.ExportCost = ProductionHelper.GetExportCost(ProductionLevel, AverageTax);
             foreach (var material in materials)
             {
-                material.ImportCost = ProductionHelper.GetImportCost(material.InputLevel);
+                material.ImportCost = ProductionHelper.GetImportCost(material.InputLevel, AverageTax);
                 material.InputBatchSize = ProductionHelper.GetInputBatchSize(material.InputLevel);
             }
 

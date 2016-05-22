@@ -37,6 +37,7 @@ namespace PlanetaryResourceManager.ViewModels
                 {"Advanced Materials", 5}
             };
 
+            AverageTax = 7.7;
             ProductionLevels = new ObservableCollection<string>(_productionLevels.Keys);
             CurrentProductionLevel = "Refined Materials";
 
@@ -47,6 +48,7 @@ namespace PlanetaryResourceManager.ViewModels
             LoadProductionItems(null);
         }
 
+        private double AverageTax { get; set; }
         private LogUtility Logger { get; set; }
         public ObservableCollection<AnalysisItem> AnalysisItems { get; set; }
         public ObservableCollection<string> ProductionLevels { get; set; }
@@ -155,7 +157,7 @@ namespace PlanetaryResourceManager.ViewModels
                         MarketDataResponse.ResequenceOrders(productData);
                         var order = productData.HighestBuyOrder;
                         item.Product.Price = order != null ? order.Price : 0.0;
-                        item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel);
+                        item.Product.ExportCost = ProductionHelper.GetExportCost(_productionLevel, AverageTax);
                         item.Product.OutputBatchSize = ProductionHelper.GetOutputBatchSize(_productionLevel);
                         item.Product.Data = productData;
 
@@ -173,7 +175,7 @@ namespace PlanetaryResourceManager.ViewModels
                             //order = materialData.LowestSellOrder(AnalysisViewModel.MinimumQuanity);
                             order = materialData.LowestSellOrder(null);
                             input.Price = order != null ? order.Price : 0.0;
-                            input.ImportCost = ProductionHelper.GetImportCost(input.InputLevel);
+                            input.ImportCost = ProductionHelper.GetImportCost(input.InputLevel, AverageTax);
                             input.InputBatchSize = ProductionHelper.GetInputBatchSize(input.InputLevel);
                             input.Data = materialData;
                         }

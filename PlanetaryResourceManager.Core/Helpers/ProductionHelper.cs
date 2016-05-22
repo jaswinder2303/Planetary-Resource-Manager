@@ -101,11 +101,11 @@ namespace PlanetaryResourceManager.Core.Helpers
                 case 2:
                     return CalculateCost(2.5, customsTaxRate);
                 case 3:
-                    return CalculateCost(20, customsTaxRate);
+                    return CalculateCost(200, customsTaxRate);
                 case 4:
-                    return CalculateCost(360, customsTaxRate);
+                    return CalculateCost(3800, customsTaxRate);
                 case 5:
-                    return CalculateCost(3000, customsTaxRate);
+                    return CalculateCost(30000, customsTaxRate);
                 default:
                     return 0;
             }
@@ -132,16 +132,18 @@ namespace PlanetaryResourceManager.Core.Helpers
         {
             switch (productionLevel)
             {
+                case 1:
+                    return CalculateCost(5, customsTaxRate);
                 case 2:
-                    return CalculateCost(40, customsTaxRate);
+                    return CalculateCost(400, customsTaxRate);
                 case 3:
-                    return CalculateCost(720, customsTaxRate);
+                    return CalculateCost(7200, customsTaxRate);
                 case 4:
-                    return CalculateCost(6000, customsTaxRate);
+                    return CalculateCost(60000, customsTaxRate);
                 case 5:
                     return CalculateCost(120000, customsTaxRate);
                 default:
-                    return 0.40;
+                    return 0;
             }
         }
 
