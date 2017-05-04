@@ -8,7 +8,7 @@ namespace PlanetaryResourceManager.Core.Models
 {
     public class MarketDataResponse
     {
-        private const int UseableQuantity = 250000;
+        private const int UseableQuantity = 2500;
         public const double NullSec = -1;
         public const double LowSec = 0.0;
         public const double HighSec = 0.4;
@@ -29,14 +29,9 @@ namespace PlanetaryResourceManager.Core.Models
 
             if (SellOrders != null)
             {
-                int filter = 0;
+                var filter = minimumQuantity ?? UseableQuantity;
 
-                if (minimumQuantity.HasValue)
-                {
-                    filter = minimumQuantity.Value > UseableQuantity ? minimumQuantity.Value : UseableQuantity;
-                }
-
-                item = SellOrders.Where(arg => arg.Quantity > filter && arg.Security > SecurityLevel).FirstOrDefault();
+                item = SellOrders.FirstOrDefault(arg => arg.Quantity > filter && arg.Security > SecurityLevel);
             }
 
             return item;
@@ -50,7 +45,7 @@ namespace PlanetaryResourceManager.Core.Models
 
                 if (BuyOrders != null)
                 {
-                    item = BuyOrders.Where(arg => arg.Security > SecurityLevel).FirstOrDefault();
+                    item = BuyOrders.FirstOrDefault(arg => arg.Security > SecurityLevel);
                 }
 
                 return item;
@@ -61,7 +56,7 @@ namespace PlanetaryResourceManager.Core.Models
         {
             get
             {
-                return BuyOrders.Where(arg => arg.Security > SecurityLevel).Take(50).ToList();
+                return BuyOrders.Where(arg => arg.Security > SecurityLevel).Take(75).ToList();
             }
         }
 
@@ -69,7 +64,7 @@ namespace PlanetaryResourceManager.Core.Models
         {
             get
             {
-                return SellOrders.Where(arg => arg.Security > SecurityLevel).Take(50).ToList();
+                return SellOrders.Where(arg => arg.Quantity > UseableQuantity && arg.Security > SecurityLevel).Take(75).ToList();
             }
         }
 

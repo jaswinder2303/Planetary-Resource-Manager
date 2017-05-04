@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager", "PlanetaryResourceManager\PlanetaryResourceManager.csproj", "{1893F040-26FE-4F39-9856-F7B420147CE5}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager.Api", "PlanetaryResourceManager.Api\PlanetaryResourceManager.Api.csproj", "{83476E94-8AAB-453B-BE19-A01DBDA5844A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager.Web", "PlanetaryResourceManager.Web\PlanetaryResourceManager.Web.csproj", "{64F44585-2A24-4032-8102-4B0D65BAC9AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager.Test", "PlanetaryResourceManager.Test\PlanetaryResourceManager.Test.csproj", "{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{64F44585-2A24-4032-8102-4B0D65BAC9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64F44585-2A24-4032-8102-4B0D65BAC9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64F44585-2A24-4032-8102-4B0D65BAC9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

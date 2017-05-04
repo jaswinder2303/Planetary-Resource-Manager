@@ -16,9 +16,9 @@ namespace PlanetaryResourceManager.Core.Models
         {
             get
             {
-                if (Data != null && Data.HighestBuyOrder != null && Data.LowestSellOrder(null) != null)
+                if (Data != null && Data.HighestBuyOrder != null && Data.LowestSellOrder(2500) != null)
                 {
-                    return Data.HighestBuyOrder.Price - Data.LowestSellOrder(null).Price;
+                    return Data.HighestBuyOrder.Price - Data.LowestSellOrder(2500).Price;
                 }
                 else
                 {
