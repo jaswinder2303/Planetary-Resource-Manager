@@ -57,7 +57,7 @@ namespace PlanetaryResourceManager.Test
             _dataResponse.SecurityLevel = MarketDataResponse.HighSec;
             var orders = _dataResponse.BestSellers;
 
-            Assert.AreEqual(6, orders.Count, "The expected number of sell orders was not returned");
+            Assert.AreEqual(0, orders.Count, "The expected number of sell orders was not returned");
         }
     }
 }
