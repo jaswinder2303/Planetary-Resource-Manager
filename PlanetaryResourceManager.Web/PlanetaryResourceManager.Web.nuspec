@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PlanetaryResourceManager.Web</id>
+    <title>PlanetaryResourceManager Web </title>
+    <version>1.0.0</version>
+    <authors>MaritzCX UK Engineering</authors>
+    <owners>MaritzCX</owners>
+    <licenseUrl>http://maritzcx.com</licenseUrl>
+    <projectUrl>http://maritzcx.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PlanetaryResourceManager.Web</description>
+  </metadata>
+  <!-- Merge in necessary files from the UI project when packaging for NuGet -->
+  <!-- Comment either of the <files> sections below to switch between Dev and Prod builds -->
+  <!-- Dev Build -->
+  <!--
+  <files>
+    <file src="..\Pledge.Web\dist.dev\*.html" target="."/>
+    <file src="..\Pledge.Web\dist.dev\app\**" target="app"/>
+    <file src="..\Pledge.Web\dist.dev\bower_components\**" target="bower_components"/>
+    <file src="..\Pledge.Web\dist.dev\fonts\**" target="fonts"/>
+    <file src="..\Pledge.Web\dist.dev\images\**" target="images"/>
+  </files>
+  -->
+</package>
