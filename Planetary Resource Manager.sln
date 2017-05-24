@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager", "PlanetaryResourceManager\PlanetaryResourceManager.csproj", "{1893F040-26FE-4F39-9856-F7B420147CE5}"
 EndProject
@@ -14,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager.Web", "PlanetaryResourceManager.Web\PlanetaryResourceManager.Web.csproj", "{64F44585-2A24-4032-8102-4B0D65BAC9AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaryResourceManager.Test", "PlanetaryResourceManager.Test\PlanetaryResourceManager.Test.csproj", "{C8630617-71AE-4BEE-BCA3-4B3F9A97CE0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D91637CD-3D87-4A6D-8AB5-8E59F00BD4EC}"
+	ProjectSection(SolutionItems) = preProject
+		Jenkinsfile.txt = Jenkinsfile.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,18 @@
+node {
+   stage('Repository Fetch') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/jaswinder2303/Planetary-Resource-Manager'
+   }
+  
+   stage('Restoring Nuget Packages'){
+       bat 'nuget restore "%WORKSPACE%\Planetary Resource Manager.sln"'
+   }
+  
+   stage('Building Solution'){
+      bat "\"${tool 'MSBuildLocal'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\" /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+   }
+
+   //stage('Running Unit Tests'){
+   //    bat "\"C:\\Program Files (x86)\\NUnit.org\\nunit-console\\nunit3-console.exe\" "%WORKSPACE%\Planetary Resource Manager\PlanetaryResourceManager.Test\bin\Release\PlanetaryResourceManager.Test.dll" "
+   //}
+}
