@@ -2,6 +2,6 @@
 node {
    stage('Repository Fetch') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/jaswinder2303/Planetary-Resource-Manager'
+      git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
    }  
 }
