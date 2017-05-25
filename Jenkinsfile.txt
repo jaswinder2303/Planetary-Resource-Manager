@@ -7,13 +7,14 @@ stage('Checkout')
 }
 stage('RestoreNugetPkg')
 {
-		echo 'Restoring Nuget Packages on WORKSPACE'
-		echo WORKSPACE "\\ResharperReport_PlanetaryResourceManager.xml"
+		echo 'Restoring Nuget Packages'
 		bat 'nuget restore "Planetary Resource Manager.sln"'
 }
-//stage 'InspectCode'
-	//	bat "D:\JetBrains.ReSharper.CommandLineTools\inspectcode.exe" "Planetary Resource Manager.sln" --output="%WORKSPACE% "\\" + "ResharperReport_PlanetaryResourceManager.xml"
-  
+stage('InspectCode')
+{
+	echo 'Inspecting Code'
+	bat '"D:\\JetBrains.ReSharper.CommandLineTools\\inspectcode.exe" "Planetary Resource Manager.sln" --output="\\ResharperReport_PlanetaryResourceManager.xml"'
+ } 
   //stage 'Build'
 		//bat 'nuget restore "%WORKSPACE%\Planetary Resource Manager.sln"'
 	//	bat "\"${tool 'MSBuild'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\ /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.1.${env.BUILD_NUMBER}"
