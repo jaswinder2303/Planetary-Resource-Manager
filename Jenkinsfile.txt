@@ -1,7 +1,17 @@
 #!groovy
 node {
-   stage('Repository Fetch') { // for display purposes
-      // Get some code from a GitHub repository
-      git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
-   }  
+stage 'Checkout'
+		checkout scm
+		 // need the above checkout scm so commented out:git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
+
+stage 'RestoreNugetPkg'
+		bat 'nuget restore "%WORKSPACE%\Planetary Resource Manager.sln"'
+
+stage 'InspectCode'
+		bat "D:\JetBrains.ReSharper.CommandLineTools\inspectcode.exe" "%WORKSPACE%\Planetary Resource Manager.sln" --output="%WORKSPACE%\ResharperReport_PlanetaryResourceManager.xml"
+  
+  stage 'Build'
+		//bat 'nuget restore "%WORKSPACE%\Planetary Resource Manager.sln"'
+		bat "\"${tool 'MSBuild'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\ /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.1.${env.BUILD_NUMBER}"
+
 }
