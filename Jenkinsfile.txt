@@ -12,7 +12,7 @@ stage('RestoreNugetPkg')
 }
 stage('InspectCode')
 {
-	echo 'Inspecting Code' "Job '${JOB_NAME}'
+	echo 'Inspecting Code' 
 	bat '"D:\\JetBrains.ReSharper.CommandLineTools\\inspectcode.exe" "Planetary Resource Manager.sln" --output="'${WORKSPACE}'\\ResharperReport_PlanetaryResourceManager.xml"'
  } 
   //stage 'Build'
