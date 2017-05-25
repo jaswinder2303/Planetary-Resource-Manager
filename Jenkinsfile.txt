@@ -6,7 +6,7 @@ stage 'Checkout'
 
 stage 'RestoreNugetPkg'
 		echo 'WORKSPACE'
-		bat 'nuget restore WORKSPACE "\Planetary Resource Manager.sln"'
+		bat 'nuget restore WORKSPACE "Planetary Resource Manager.sln"'
 
 //stage 'InspectCode'
 //		bat "D:\JetBrains.ReSharper.CommandLineTools\inspectcode.exe" "%WORKSPACE%\Planetary Resource Manager.sln" --output="%WORKSPACE%\ResharperReport_PlanetaryResourceManager.xml"
