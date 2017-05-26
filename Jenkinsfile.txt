@@ -1,22 +1,26 @@
 #!groovy
 node {
-stage('Checkout')
+   stage('Checkout')
 {
-		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} ${env.JOB_NAME}"
-		checkout scm
-		 // need the above checkout scm so commented out:git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} ${env.JOB_NAME}"
+        checkout scm
+         // need the above checkout scm so commented out:git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
 }
-stage('RestoreNugetPkg')
-{
-		echo 'Restoring Nuget Packages'
-		bat 'nuget restore "Planetary Resource Manager.sln"'
-}
-stage('InspectCode')
-{
-	echo 'Inspecting Code 1.1.${env.BUILD_NUMBER}'  
-	bat '"D:\\JetBrains.ReSharper.CommandLineTools\\inspectcode.exe" "Planetary Resource Manager.sln" --output="${env.WORKSPACE}\\ResharperReport_PlanetaryResourceManager.xml"'
- } 
-  //stage 'Build'	
-	//	bat "\"${tool 'MSBuild'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\ /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.1.${env.BUILD_NUMBER}"
 
-}
+   stage('Restoring Nuget Packages')
+   {
+         echo 'Restoring Nuget Packages'
+        bat 'nuget restore "Planetary Resource Manager.sln"'
+   }
+  
+//   stage('Building Solution')
+//{
+//      bat '"\"${tool 'MSBuildLocal'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\" /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"'
+//   }
+
+   //stage('Running Unit Tests')
+   //{
+   //    bat "\"C:\\Program Files (x86)\\NUnit.org\\nunit-console\\nunit3-console.exe\" "%WORKSPACE%\Planetary Resource Manager\PlanetaryResourceManager.Test\bin\Release\PlanetaryResourceManager.Test.dll" "
+   //}
+   
+   }
