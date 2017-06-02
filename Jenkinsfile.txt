@@ -1,26 +1,98 @@
 #!groovy
+def notifySlack(String buildStatus = 'STARTED', String addmessage = '') {
+    // Build status of null means success.
+    buildStatus = buildStatus ?: 'SUCCESS'
+	addmessage = addmessage ?: ''
+
+    def color
+	def msg
+	
+    if (buildStatus == 'STARTED') {
+        color = '#D4DADF' //Grey
+    } else if (buildStatus == 'SUCCESS') {
+        color = '#56A52E'  //Green
+    } else if (buildStatus == 'UNSTABLE') {
+        color = '#D20B17'  //Red
+    } else {
+        color = '#FF9FA1'
+    }
+	
+	if (buildStatus == 'FAILED') {
+		msg = "Build failed: <${env.BUILD_URL}console|${env.JOB_NAME} #${env.BUILD_NUMBER}>\nCaused by: ${addmessage}"
+	  }
+	  else {
+		msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+	}
+
+    slackSend(color: color, message: msg)
+}
+
 node {
+    
+    try {
+        notifySlack()
+        
    stage('Checkout')
 {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} ${env.JOB_NAME}"
+        echo 'Step:1 Checkout stage'
         checkout scm
          // need the above checkout scm so commented out:git url 'https://github.com/jaswinder2303/Planetary-Resource-Manager',  branch: 'master'
 }
 
    stage('Restoring Nuget Packages')
    {
-         echo 'Restoring Nuget Packages'
-        bat 'nuget restore "Planetary Resource Manager.sln"'
+        echo 'Step:2 Restoring Nuget Packages'
+        bat "\"${env.NUGET}\" restore \"Planetary Resource Manager.sln\""
+
    }
   
-//   stage('Building Solution')
-//{
-//      bat '"\"${tool 'MSBuildLocal'}\" \"%WORKSPACE%\Planetary Resource Manager.sln\" /p:Configuration=Release /p:Platform=\"Any CPU\" /p:RunOctoPack=true /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"'
-//   }
+  stage('Build Solution')
+    {
+		echo 'Step:3 Build Solution'
+       bat "\"${tool 'MSBuildTool'}\" \"Planetary Resource Manager.sln\" /p:Configuration=Release /p:ProductVersion=1.1.${env.BUILD_NUMBER} /p:Platform=\"Any CPU\""
+    }
+  
+  
+   stage('Running Unit Tests')
+   {
+        echo 'Step:4 Running Unit Tests'
+		bat "\"${env.NUNIT_CONSOLE}\" \"${env.WORKSPACE}\\PlanetaryResourceManager.Test\\bin\\Release\\PlanetaryResourceManager.Test.dll\""
+	  
+   }
+  
+  stage('InspectCode using Resharper')
+{
+	echo 'Step:5 InspectCode using Resharper'
+	bat "\"${env.RESHARPER}\" \"Planetary Resource Manager.sln\" --output=ResharperReport_PlanetaryResourceManager_v1.1.${env.BUILD_NUMBER}.xml"
+    
+}
 
-   //stage('Running Unit Tests')
-   //{
-   //    bat "\"C:\\Program Files (x86)\\NUnit.org\\nunit-console\\nunit3-console.exe\" "%WORKSPACE%\Planetary Resource Manager\PlanetaryResourceManager.Test\bin\Release\PlanetaryResourceManager.Test.dll" "
-   //}
+
+   stage('Publish Test Results'){
+       
+      echo 'Step:6 Publish Test Results'
+	  nunit testResultsPattern: 'TestResult.xml'
+   }
    
+   stage('Octopack Package and Publish Package')
+    {
+        echo 'Step:7 Octopack Package and Publish Package'
+		bat "\"${tool 'MSBuildTool'}\" \"Planetary Resource Manager.sln\" /t:Clean,Build /p:Configuration=Release  /p:RunOctoPack=true /p:OctoPackEnforceAddingFiles=true /p:OctoPackPackageVersion=1.1.${BUILD_NUMBER} /p:Platform=\"Any CPU\" /p:OctoPackPublishApiKey=${env.OCTOPUS_SERVER_APIKEY} /p:OctoPackPublishPackageToHttp=http://localhost:80/octopus/nuget/packages"
+    }
+	
+	stage('Create Release')
+	{
+		echo 'Step:8 Create Release'
+	    bat "\"${env.OctoExe}\" create-release --project \"Planetary Resource Manager\" --version 1.1.${env.BUILD_NUMBER} --packageversion 1.1.${env.BUILD_NUMBER} --server ${env.OCTOPUS_SERVER} --apiKey=${env.OCTOPUS_SERVER_APIKEY}"
+	    
+	}
+
+    
+    } catch (exception) {
+        currentBuild.result = 'FAILURE'
+		notifySlack(currentBuild.result, ${exception.getMessage()})
+        throw exception
+    } finally {
+        notifySlack(currentBuild.result)
+    }
    }
